@@ -1,0 +1,1105 @@
+COMPANY_PROFILE_ENDPOINT = "v3/profile/{symbol}"
+# Get a comprehensive overview of a company with our Company Profile endpoint. This endpoint provides key information such as price, beta, market capitalization, description, headquarters, and more.
+# Path params
+# symbol: The ticker of the company
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"price": 178.72,
+		"beta": 1.286802,
+		"volAvg": 58405568,
+		"mktCap": 2794144143933,
+		"lastDiv": 0.96,
+		"range": "124.17-198.23",
+		"changes": -0.13,
+		"companyName": "Apple Inc.",
+		"currency": "USD",
+		"cik": "0000320193",
+		"isin": "US0378331005",
+		"cusip": "037833100",
+		"exchange": "NASDAQ Global Select",
+		"exchangeShortName": "NASDAQ",
+		"industry": "Consumer Electronics",
+		"website": "https://www.apple.com",
+		"description": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. It also sells various related services. In addition, the company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; AirPods Max, an over-ear wireless headphone; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, HomePod, and iPod touch. Further, it provides AppleCare support services; cloud services store services; and operates various platforms, including the App Store that allow customers to discover and download applications and digital content, such as books, music, video, games, and podcasts. Additionally, the company offers various services, such as Apple Arcade, a game subscription service; Apple Music, which offers users a curated listening experience with on-demand radio stations; Apple News+, a subscription news and magazine service; Apple TV+, which offers exclusive original content; Apple Card, a co-branded credit card; and Apple Pay, a cashless payment service, as well as licenses its intellectual property. The company serves consumers, and small and mid-sized businesses; and the education, enterprise, and government markets. It distributes third-party applications for its products through the App Store. The company also sells its products through its retail and online stores, and direct sales force; and third-party cellular network carriers, wholesalers, retailers, and resellers. Apple Inc. was incorporated in 1977 and is headquartered in Cupertino, California.",
+		"ceo": "Mr. Timothy D. Cook",
+		"sector": "Technology",
+		"country": "US",
+		"fullTimeEmployees": "164000",
+		"phone": "408 996 1010",
+		"address": "One Apple Park Way",
+		"city": "Cupertino",
+		"state": "CA",
+		"zip": "95014",
+		"dcfDiff": 4.15176,
+		"dcf": 150.082,
+		"image": "https://financialmodelingprep.com/image-stock/AAPL.png",
+		"ipoDate": "1980-12-12",
+		"defaultImage": false,
+		"isEtf": false,
+		"isActivelyTrading": true,
+		"isAdr": false,
+		"isFund": false
+	}
+]
+"""
+
+EXECUTIVE_COMPENSATION_ENDPOINT = "v4/governance/executive_compensation"
+# Understand how a company compensates its executives with our Executive Compensation endpoint. This endpoint provides information such as salary, bonus, and stock options for each executive.
+# Query params
+# symbol: The ticker of the company
+
+# Response
+"""
+[
+	{
+		"cik": "0000320193",
+		"symbol": "AAPL",
+		"companyName": "Apple Inc.",
+		"industryTitle": "ELECTRONIC COMPUTERS",
+		"acceptedDate": "2022-01-06 16:30:34",
+		"filingDate": "2022-01-06",
+		"nameAndPosition": "Kate Adams Senior Vice President, General Counsel and Secretary",
+		"year": 2020,
+		"salary": 1000000,
+		"bonus": 0,
+		"stock_award": 21657687,
+		"incentive_plan_compensation": 3577000,
+		"all_other_compensation": 14310,
+		"total": 26248995,
+		"url": "https://www.sec.gov/Archives/edgar/data/320193/000119312522003583/0001193125-22-003583-index.htm"
+	}
+]
+"""
+
+COMPENSATION_BENCHMARK_ENDPOINT = "v4/executive-compensation-benchmark"
+# Compare a company's executive compensation to other companies in the same industry with our Compensation Benchmark endpoint. This endpoint can help you understand how competitive a company's executive compensation is.
+# Query params
+# year: int - The year of the compensation
+
+# Response
+"""
+[
+	{
+		"industryTitle": "AGRICULTURAL PROD-LIVESTOCK & ANIMAL SPECIALTIES",
+		"year": 2022,
+		"averageCompensation": 312314.6
+	}
+]
+"""
+
+COMPANY_NOTES_ENDPOINT = "v4/company-notes"
+# Stay up-to-date on a company's financial condition, operations, and risks with our Company Notes endpoint. This endpoint provides information about notes reported by a company in their financial statements.
+# Query params
+# symbol: The ticker of the company
+
+# Response
+"""
+[
+	{
+		"cik": "0000320193",
+		"symbol": "AAPL",
+		"title": "1.375% Notes due 2024",
+		"exchange": "NASDAQ"
+	}
+]
+"""
+
+HISTORICAL_EMPLOYEE_ENDPOINT = "v4/historical/employee_count"
+# Track how a company's workforce has grown or shrunk over time with our Historical Employees endpoint. This endpoint provides historical data about the number of employees in a company.
+# Query params
+# symbol: The ticker of the company
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"cik": "0000320193",
+		"acceptanceTime": "2022-10-27 18:01:14",
+		"periodOfReport": "2022-09-24",
+		"companyName": "Apple Inc.",
+		"formType": "10-K",
+		"filingDate": "2022-10-28",
+		"employeeCount": 164000,
+		"source": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm"
+	}
+]
+"""
+
+EMPLOYEE_COUNT_ENDPOINT = "v4/employee_count"
+# Get the current number of employees in a company with our Employee Count endpoint. This endpoint can help you understand the size of a company's workforce and compare it to other companies.
+# Query params
+# symbol: The ticker of the company
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"cik": "0000320193",
+		"acceptanceTime": "2022-10-27 18:01:14",
+		"periodOfReport": "2022-09-24",
+		"companyName": "Apple Inc.",
+		"formType": "10-K",
+		"filingDate": "2022-10-28",
+		"employeeCount": 164000,
+		"source": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm"
+	}
+]
+"""
+
+STOCK_SCREEN_ENDPOINT = "v3/stock-screener"
+# Find stocks that meet your investment criteria with our Screener (Stock) endpoint. This endpoint allows you to search for stocks based on various criteria, such as market cap, price, volume, beta, sector, and country.
+# Query params
+# marketCapMoreThan:  number - 1000000000
+# marketCapLowerThan: number - 1000000000
+# priceMoreThan: number - 100
+# priceLowerThan: number - 100
+# betaMoreThan: number - 1
+# betaLowerThan: number - 1
+# volumeMoreThan: number - 10000
+# volumeLowerThan: number - 10000
+# dividendMoreThan: number - 1
+# dividendLowerThan: number - 1
+# isEtf: boolean - true
+# isFund: boolean - false
+# isActivelyTrading: boolean - true
+# sector: string - Consumer Cyclical, Energy, Technology, Industrials, Financial Services, Basic Materials, Communication Services, Consumer Defensive, Healthcare, Real Estate, Utilities, Industrial Goods, Financial, Services, Conglomerates
+# Industry: string - Banks—Regional, Banks—Diversified, Software—Infrastructure, Oil & Gas—Midstream, Banks—Regional, Beverages—Brewers, Beverages—Wineries & Distilleries, Beverages—Non-Alcoholic, Beverages—Wineries & Distilleries, Beverages—Brewers
+# Country: string - US, UK, MX, BR, RU, HK, CA, ..
+# exchange: string - nyse, nasdaq, amex, euronext, tsx, etf, mutual_fund, ..
+# limit: number - 10
+
+# Response
+"""
+[
+	{
+		"symbol": "BAC-PL",
+		"companyName": "Bank of America Corporation",
+		"marketCap": 9519430436381,
+		"sector": "Financial Services",
+		"industry": "Banks—Diversified",
+		"beta": 1.399232,
+		"price": 1181.25,
+		"lastAnnualDividend": 72.5,
+		"volume": 2817,
+		"exchange": "New York Stock Exchange",
+		"exchangeShortName": "NYSE",
+		"country": "US",
+		"isEtf": false,
+		"isActivelyTrading": true
+	}
+]
+"""
+
+STOCK_GRADE_ENDPOINT = "v3/grade/{symbol}"
+# Get a sense of how professional investors view a company with our Stock Grade endpoint. This endpoint provides a rating of a company given by hedge funds, investment firms, and analysts.
+# Path params
+# symbol: The ticker of the company
+# Query params
+# limit: number - 500
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"date": "2023-02-03",
+		"gradingCompany": "Cowen & Co.",
+		"previousGrade": "Outperform",
+		"newGrade": "Outperform"
+	}
+]
+"""
+
+EXECUTIVES_ENDPOINT = "v3/key-executives/{symbol}"
+# Path params
+# symbol: The ticker of the company
+
+# Response
+"""
+[
+	{
+		"title": "Senior Vice President of People & Retail",
+		"name": "Ms. Deirdre  O'Brien",
+		"pay": 5019783,
+		"currencyPay": "USD",
+		"gender": "female",
+		"yearBorn": 1967,
+		"titleSince": 1676248586
+	}
+]
+"""
+
+COMPANY_CORE_INFORMATION_ENDPOINT = "v4/company-core-information"
+# Verify a company's identity or find additional information about a company with our Company Core Information summary endpoint. This endpoint provides core information such as CIK, exchange, and address.
+# Query params
+# symbol: The ticker of the company
+
+# Response
+"""
+[
+	{
+		"cik": "0000320193",
+		"symbol": "AAPL",
+		"exchange": "NASDAQ",
+		"sicCode": "3571",
+		"sicGroup": "Consumer Electronics",
+		"sicDescription": "ELECTRONIC COMPUTERS",
+		"stateLocation": "CA",
+		"stateOfIncorporation": "CA",
+		"fiscalYearEnd": "09-25",
+		"businessAddress": "ONE APPLE PARK WAY,CUPERTINO CA 95014,(408) 996-1010",
+		"mailingAddress": "ONE APPLE PARK WAY,CUPERTINO CA 95014",
+		"taxIdentificationNumber": "94-2404110",
+		"registrantName": "Apple Inc."
+	}
+]
+"""
+
+MARKET_CAPITALIZATION_ENDPOINT = "v3/market-capitalization/{symbol}"
+# The FMP Market Cap endpoint provides the current market capitalization of a company. Market cap is a measure of the size and relative importance of a company in the stock market. It is calculated by multiplying the current share price by the number of outstanding shares.
+# Path params
+# symbol: The ticker of the company
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"date": "2023-03-02",
+		"marketCap": 2309048053309
+	}
+]
+"""
+
+HISTORICAL_MARKET_CAPITALIZATION_ENDPOINT = "v3/historical-market-capitalization/{symbol}"
+# The FMP Historical Market Cap endpoint offers comprehensive historical market capitalization data for companies, enabling users to analyze the company's growth trajectory and identify performance trends over time. Please note that each query is limited to a maximum of five years of data.
+
+# Path params
+# symbol: The ticker of the company
+# Query params
+# from: date - 2020-01-01
+# to: date - 2023-01-01
+# limit: int - 500
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"date": "2023-03-02",
+		"marketCap": 2313794623242
+	}
+]
+"""
+
+ALL_COUNTRIES_ENDPOINT = "v3/get-all-countries"
+# The FMP All Countries endpoint provides a list of all countries where stocks are traded. Investors can use this information to identify new investment opportunities and to diversify their portfolios.
+
+# Response:
+"""
+[
+	"FK",
+	"RU",
+	"DK",
+	"SN",
+	"SI",
+	"CZ",
+	"KR"
+]
+"""
+
+ANALYST_ESTIMATES = "v3/analyst-estimates/{symbol}"
+# The FMP Analyst Estimates endpoint provides analyst estimates for a company's future earnings and revenue. Investors can use this information to get a sense of what analysts expect from a company and to identify potential investment opportunities.
+# Special endpoint - Not available on free plan.
+# Path params
+# symbol: The ticker of the company
+# Query params
+# period: str - quarter,annual
+# limit: int - 30
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"date": "2023-12-31",
+		"estimatedRevenueLow": 338710374830,
+		"estimatedRevenueHigh": 508065562246,
+		"estimatedRevenueAvg": 423387968538,
+		"estimatedEbitdaLow": 110816277291,
+		"estimatedEbitdaHigh": 166224415938,
+		"estimatedEbitdaAvg": 138520346615,
+		"estimatedEbitLow": 99597027281,
+		"estimatedEbitHigh": 149395540924,
+		"estimatedEbitAvg": 124496284103,
+		"estimatedNetIncomeLow": 83849180538,
+		"estimatedNetIncomeHigh": 125773770810,
+		"estimatedNetIncomeAvg": 104811475674,
+		"estimatedSgaExpenseLow": 20384820993,
+		"estimatedSgaExpenseHigh": 30577231491,
+		"estimatedSgaExpenseAvg": 25481026242,
+		"estimatedEpsAvg": 6.01,
+		"estimatedEpsHigh": 7.209999999999999,
+		"estimatedEpsLow": 4.81,
+		"numberAnalystEstimatedRevenue": 12,
+		"numberAnalystsEstimatedEps": 12
+	}
+]
+"""
+
+ANALYST_RECOMMENDATION_ENDPOINT = "v3/analyst-stock-recommendations/{symbol}"
+# The FMP Analyst Recommendation endpoint provides analyst recommendations for buying, selling, or holding a company's stock. Investors can use this information to get a sense of what analysts think of a company's stock and to make informed investment decisions.
+
+# Special endpoint - Not available on free plan.
+# Path params
+# symbol: The ticker of the company
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"date": "2023-08-01",
+		"analystRatingsbuy": 21,
+		"analystRatingsHold": 6,
+		"analystRatingsSell": 0,
+		"analystRatingsStrongSell": 0,
+		"analystRatingsStrongBuy": 11
+	}
+]
+"""
+
+COMPANY_OUTLOOK_ENDPOINT = "v4/company-outlook"
+# The FMP Company Outlook endpoint provides an overview of a company, including its profile information, most recent insider trading transactions, and financial statements. Investors can use this information to get a comprehensive understanding of a company and to make informed investment decisions.
+
+# Query params
+# symbol: The ticker of the company
+
+# Response
+"""
+{
+	"profile": {
+		"symbol": "AAPL",
+		"price": 173.66,
+		"beta": 1.286802,
+		"volAvg": 58221571,
+		"mktCap": 2715035094200,
+		"lastDiv": 0.96,
+		"range": "124.17-198.23",
+		"changes": 1.26,
+		"companyName": "Apple Inc.",
+		"currency": "USD",
+		"cik": "0000320193",
+		"isin": "US0378331005",
+		"cusip": "037833100",
+		"exchange": "NASDAQ Global Select",
+		"exchangeShortName": "NASDAQ",
+		"industry": "Consumer Electronics",
+		"website": "https://www.apple.com",
+		"description": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. It also sells various related services. In addition, the company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; AirPods Max, an over-ear wireless headphone; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, HomePod, and iPod touch. Further, it provides AppleCare support services; cloud services store services; and operates various platforms, including the App Store that allow customers to discover and download applications and digital content, such as books, music, video, games, and podcasts. Additionally, the company offers various services, such as Apple Arcade, a game subscription service; Apple Music, which offers users a curated listening experience with on-demand radio stations; Apple News+, a subscription news and magazine service; Apple TV+, which offers exclusive original content; Apple Card, a co-branded credit card; and Apple Pay, a cashless payment service, as well as licenses its intellectual property. The company serves consumers, and small and mid-sized businesses; and the education, enterprise, and government markets. It distributes third-party applications for its products through the App Store. The company also sells its products through its retail and online stores, and direct sales force; and third-party cellular network carriers, wholesalers, retailers, and resellers. Apple Inc. was incorporated in 1977 and is headquartered in Cupertino, California.",
+		"ceo": "Mr. Timothy D. Cook",
+		"sector": "Technology",
+		"country": "US",
+		"fullTimeEmployees": "164000",
+		"phone": "408 996 1010",
+		"address": "One Apple Park Way",
+		"city": "Cupertino",
+		"state": "CA",
+		"zip": "95014",
+		"dcfDiff": 4.15176,
+		"dcf": 150.082,
+		"image": "https://financialmodelingprep.com/image-stock/AAPL.png",
+		"ipoDate": "1980-12-12",
+		"defaultImage": false,
+		"isEtf": false,
+		"isActivelyTrading": true,
+		"isAdr": false,
+		"isFund": false
+	},
+	"metrics": {
+		"dividendYielTTM": 0,
+		"volume": 51278844,
+		"yearHigh": 198.23,
+		"yearLow": 124.17
+	},
+	"ratios": [
+		{
+			"dividendYielTTM": 0.005412875734193251,
+			"dividendYielPercentageTTM": 0.5412875734193251,
+			"peRatioTTM": 28.76791523047699,
+			"pegRatioTTM": 3.398209986600091,
+			"payoutRatioTTM": 0.15797804981004643,
+			"currentRatioTTM": 0.9815625425125837,
+			"quickRatioTTM": 0.8135848211070477,
+			"cashRatioTTM": 0.22733129006185832,
+			"daysOfSalesOutstandingTTM": 37.25360935371536,
+			"daysOfInventoryOutstandingTTM": 12.357922226265103,
+			"operatingCycleTTM": 21.543743710742863,
+			"daysOfPayablesOutstandingTTM": 78.5066807297448,
+			"cashConversionCycleTTM": -38.205912470922975,
+			"grossProfitMarginTTM": 0.4344924765518984,
+			"operatingProfitMarginTTM": 0.2923062096772093,
+			"pretaxProfitMarginTTM": 0.2901417695274957,
+			"netProfitMarginTTM": 0.2468138972164414,
+			"effectiveTaxRateTTM": 0.1493334530275147,
+			"returnOnAssetsTTM": 0.2828335890257225,
+			"returnOnEquityTTM": 1.649211812157629,
+			"returnOnCapitalEmployedTTM": 0.5342187314054504,
+			"netIncomePerEBTTTM": 0.8506665469724853,
+			"ebtPerEbitTTM": 0.9925952987721205,
+			"ebitPerRevenueTTM": 0.2923062096772093,
+			"debtRatioTTM": 0.32617195661387666,
+			"debtEquityRatioTTM": 1.8130537213392175,
+			"longTermDebtToCapitalizationTTM": 0.6193501531466102,
+			"totalDebtToCapitalizationTTM": 0.6445144319803721,
+			"interestCoverageTTM": 29.863225119744545,
+			"cashFlowToDebtRatioTTM": 1.0346998535871157,
+			"companyEquityMultiplierTTM": 5.558582473371603,
+			"receivablesTurnoverTTM": 9.79770836523248,
+			"payablesTurnoverTTM": 4.649285851945438,
+			"inventoryTurnoverTTM": 29.535709427288804,
+			"fixedAssetTurnoverTTM": 8.815912743972445,
+			"assetTurnoverTTM": 1.1459386696434435,
+			"operatingCashFlowPerShareTTM": 7.203132909243405,
+			"freeCashFlowPerShareTTM": 6.433270686869992,
+			"cashPerShareTTM": 3.980350134740222,
+			"operatingCashFlowSalesRatioTTM": 0.2945097191437048,
+			"freeCashFlowOperatingCashFlowRatioTTM": 0.8931211971133437,
+			"cashFlowCoverageRatiosTTM": 1.0346998535871157,
+			"shortTermCoverageRatiosTTM": 10.08760817200464,
+			"capitalExpenditureCoverageRatioTTM": 9.356392221762516,
+			"dividendPaidAndCapexCoverageRatioTTM": 4.179338384771762,
+			"priceBookValueRatioTTM": 45.22758813485085,
+			"priceToBookRatioTTM": 45.22758813485085,
+			"priceToSalesRatioTTM": 7.07163774460648,
+			"priceEarningsRatioTTM": 28.76791523047699,
+			"priceToFreeCashFlowsRatioTTM": 26.884996031172328,
+			"priceToOperatingCashFlowsRatioTTM": 24.10895400488184,
+			"priceCashFlowRatioTTM": 24.10895400488184,
+			"priceEarningsToGrowthRatioTTM": 3.398209986600091,
+			"priceSalesRatioTTM": 7.07163774460648,
+			"enterpriseValueMultipleTTM": 23.12482605516728,
+			"priceFairValueTTM": 45.22758813485085,
+			"dividendPerShareTTM": 0.94
+		}
+	],
+	"insideTrades": [
+		{
+			"symbol": "AAPL",
+			"filingDate": "2023-10-03 21:09:17",
+			"transactionDate": "2023-10-01",
+			"reportingCik": "0001496686",
+			"transactionType": "M-Exempt",
+			"securitiesOwned": 626085,
+			"companyCik": "0000320193",
+			"reportingName": "WILLIAMS JEFFREY E",
+			"typeOfOwner": "officer: COO",
+			"acquistionOrDisposition": "A",
+			"formType": "4",
+			"securitiesTransacted": 136268,
+			"price": 0,
+			"securityName": "Common Stock",
+			"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000093/0000320193-23-000093-index.htm"
+		}
+	],
+	"keyExecutives": [
+		{
+			"title": "Senior Vice President of People & Retail",
+			"name": "Ms. Deirdre  O'Brien",
+			"pay": 5019783,
+			"currencyPay": "USD",
+			"gender": "female",
+			"yearBorn": 1967,
+			"titleSince": 1676248586
+		}
+	],
+	"splitsHistory": [
+		{
+			"date": "2020-08-31",
+			"label": "August 31, 20",
+			"numerator": 4,
+			"denominator": 1
+		}
+	],
+	"stockDividend": [
+		{
+			"date": "2023-08-11",
+			"label": "August 11, 23",
+			"adjDividend": 0.24,
+			"dividend": 0.24,
+			"recordDate": "2023-08-14",
+			"paymentDate": "2023-08-17",
+			"declarationDate": "2023-08-03"
+		}
+	],
+	"stockNews": [
+		{
+			"symbol": "AAPL",
+			"publishedDate": "2023-10-04 15:15:36",
+			"title": "Apple CEO Tim Cook Sells Shares Valued at About $88 Million",
+			"image": "https://cdn.snapi.dev/images/v1/p/w/gettyimages-1660560144-b12dac563e6048fe88184489645bf0d3-2090214.jpg",
+			"site": "Investopedia",
+			"text": "Apple (AAPL) CEO Tim Cook made his biggest sale of company stock in more than two years as shares of the iPhone maker have lost ground since hitting an all-time high this summer.",
+			"url": "https://www.investopedia.com/apple-ceo-tim-cook-sells-shares-valued-at-about-usd88-million-8347443"
+		}
+	],
+	"rating": [
+		{
+			"symbol": "AAPL",
+			"date": "2023-10-03",
+			"rating": "S",
+			"ratingScore": 5,
+			"ratingRecommendation": "Strong Buy",
+			"ratingDetailsDCFScore": 5,
+			"ratingDetailsDCFRecommendation": "Strong Buy",
+			"ratingDetailsROEScore": 5,
+			"ratingDetailsROERecommendation": "Strong Buy",
+			"ratingDetailsROAScore": 3,
+			"ratingDetailsROARecommendation": "Neutral",
+			"ratingDetailsDEScore": 5,
+			"ratingDetailsDERecommendation": "Strong Buy",
+			"ratingDetailsPEScore": 5,
+			"ratingDetailsPERecommendation": "Strong Buy",
+			"ratingDetailsPBScore": 5,
+			"ratingDetailsPBRecommendation": "Strong Buy"
+		}
+	],
+	"financialsAnnual": {
+		"income": [
+			{
+				"date": "2022-09-24",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2022-10-28",
+				"acceptedDate": "2022-10-27 18:01:14",
+				"calendarYear": "2022",
+				"period": "FY",
+				"revenue": 394328000000,
+				"costOfRevenue": 223546000000,
+				"grossProfit": 170782000000,
+				"grossProfitRatio": 0.4330963056,
+				"researchAndDevelopmentExpenses": 26251000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 25094000000,
+				"otherExpenses": -334000000,
+				"operatingExpenses": 51345000000,
+				"costAndExpenses": 274891000000,
+				"interestIncome": 2825000000,
+				"interestExpense": 2931000000,
+				"depreciationAndAmortization": 11104000000,
+				"ebitda": 130541000000,
+				"ebitdaratio": 0.3310467428,
+				"operatingIncome": 119437000000,
+				"operatingIncomeRatio": 0.302887444,
+				"totalOtherIncomeExpensesNet": -334000000,
+				"incomeBeforeTax": 119103000000,
+				"incomeBeforeTaxRatio": 0.3020404333,
+				"incomeTaxExpense": 19300000000,
+				"netIncome": 99803000000,
+				"netIncomeRatio": 0.2530964071,
+				"eps": 6.15,
+				"epsdiluted": 6.11,
+				"weightedAverageShsOut": 16215963000,
+				"weightedAverageShsOutDil": 16325819000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+			},
+			{
+				"date": "2021-09-25",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2021-10-29",
+				"acceptedDate": "2021-10-28 18:04:28",
+				"calendarYear": "2021",
+				"period": "FY",
+				"revenue": 365817000000,
+				"costOfRevenue": 212981000000,
+				"grossProfit": 152836000000,
+				"grossProfitRatio": 0.4177935963,
+				"researchAndDevelopmentExpenses": 21914000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 21973000000,
+				"otherExpenses": 258000000,
+				"operatingExpenses": 43887000000,
+				"costAndExpenses": 256868000000,
+				"interestIncome": 2843000000,
+				"interestExpense": 2645000000,
+				"depreciationAndAmortization": 11284000000,
+				"ebitda": 120233000000,
+				"ebitdaratio": 0.3286697994,
+				"operatingIncome": 108949000000,
+				"operatingIncomeRatio": 0.2978237753,
+				"totalOtherIncomeExpensesNet": 258000000,
+				"incomeBeforeTax": 109207000000,
+				"incomeBeforeTaxRatio": 0.2985290459,
+				"incomeTaxExpense": 14527000000,
+				"netIncome": 94680000000,
+				"netIncomeRatio": 0.2588179336,
+				"eps": 5.67,
+				"epsdiluted": 5.61,
+				"weightedAverageShsOut": 16701272000,
+				"weightedAverageShsOutDil": 16864919000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/0000320193-21-000105-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm"
+			},
+			{
+				"date": "2020-09-26",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2020-10-30",
+				"acceptedDate": "2020-10-29 18:06:25",
+				"calendarYear": "2020",
+				"period": "FY",
+				"revenue": 274515000000,
+				"costOfRevenue": 169559000000,
+				"grossProfit": 104956000000,
+				"grossProfitRatio": 0.3823324773,
+				"researchAndDevelopmentExpenses": 18752000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 19916000000,
+				"otherExpenses": 803000000,
+				"operatingExpenses": 38668000000,
+				"costAndExpenses": 208227000000,
+				"interestIncome": 3763000000,
+				"interestExpense": 2873000000,
+				"depreciationAndAmortization": 11056000000,
+				"ebitda": 77344000000,
+				"ebitdaratio": 0.2817478098,
+				"operatingIncome": 66288000000,
+				"operatingIncomeRatio": 0.2414731435,
+				"totalOtherIncomeExpensesNet": 803000000,
+				"incomeBeforeTax": 67091000000,
+				"incomeBeforeTaxRatio": 0.2443983025,
+				"incomeTaxExpense": 9680000000,
+				"netIncome": 57411000000,
+				"netIncomeRatio": 0.2091361128,
+				"eps": 3.31,
+				"epsdiluted": 3.28,
+				"weightedAverageShsOut": 17352119000,
+				"weightedAverageShsOutDil": 17528214000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019320000096/0000320193-20-000096-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019320000096/aapl-20200926.htm"
+			},
+			{
+				"date": "2019-09-28",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2019-10-31",
+				"acceptedDate": "2019-10-30 18:12:36",
+				"calendarYear": "2019",
+				"period": "FY",
+				"revenue": 260174000000,
+				"costOfRevenue": 161782000000,
+				"grossProfit": 98392000000,
+				"grossProfitRatio": 0.3781776811,
+				"researchAndDevelopmentExpenses": 16217000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 18245000000,
+				"otherExpenses": 1807000000,
+				"operatingExpenses": 34462000000,
+				"costAndExpenses": 196244000000,
+				"interestIncome": 4961000000,
+				"interestExpense": 3576000000,
+				"depreciationAndAmortization": 12547000000,
+				"ebitda": 76477000000,
+				"ebitdaratio": 0.2939455903,
+				"operatingIncome": 63930000000,
+				"operatingIncomeRatio": 0.2457201719,
+				"totalOtherIncomeExpensesNet": 1807000000,
+				"incomeBeforeTax": 65737000000,
+				"incomeBeforeTaxRatio": 0.2526655238,
+				"incomeTaxExpense": 10481000000,
+				"netIncome": 55256000000,
+				"netIncomeRatio": 0.2123809451,
+				"eps": 2.99,
+				"epsdiluted": 2.97,
+				"weightedAverageShsOut": 18471336000,
+				"weightedAverageShsOutDil": 18595652000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019319000119/0000320193-19-000119-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019319000119/a10-k20199282019.htm"
+			},
+			{
+				"date": "2018-09-29",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2018-11-05",
+				"acceptedDate": "2018-11-05 08:01:40",
+				"calendarYear": "2018",
+				"period": "FY",
+				"revenue": 265595000000,
+				"costOfRevenue": 163756000000,
+				"grossProfit": 101839000000,
+				"grossProfitRatio": 0.3834371882,
+				"researchAndDevelopmentExpenses": 14236000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 16705000000,
+				"otherExpenses": 2005000000,
+				"operatingExpenses": 30941000000,
+				"costAndExpenses": 194697000000,
+				"interestIncome": 5686000000,
+				"interestExpense": 3240000000,
+				"depreciationAndAmortization": 10903000000,
+				"ebitda": 81801000000,
+				"ebitdaratio": 0.3079914908,
+				"operatingIncome": 70898000000,
+				"operatingIncomeRatio": 0.2669402662,
+				"totalOtherIncomeExpensesNet": 2005000000,
+				"incomeBeforeTax": 72903000000,
+				"incomeBeforeTaxRatio": 0.2744893541,
+				"incomeTaxExpense": 13372000000,
+				"netIncome": 59531000000,
+				"netIncomeRatio": 0.2241420207,
+				"eps": 3,
+				"epsdiluted": 2.98,
+				"weightedAverageShsOut": 19821508000,
+				"weightedAverageShsOutDil": 20000436000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019318000145/0000320193-18-000145-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019318000145/a10-k20189292018.htm"
+			}
+		]
+	},
+	"financialsQuarter": {
+		"income": [
+			{
+				"date": "2023-07-01",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2023-08-04",
+				"acceptedDate": "2023-08-03 18:04:43",
+				"calendarYear": "2023",
+				"period": "Q3",
+				"revenue": 81797000000,
+				"costOfRevenue": 45384000000,
+				"grossProfit": 36413000000,
+				"grossProfitRatio": 0.4451630255,
+				"researchAndDevelopmentExpenses": 7442000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 5973000000,
+				"otherExpenses": -265000000,
+				"operatingExpenses": 13415000000,
+				"costAndExpenses": 58799000000,
+				"interestIncome": 980000000,
+				"interestExpense": 998000000,
+				"depreciationAndAmortization": 3052000000,
+				"ebitda": 22998000000,
+				"ebitdaratio": 0.2811594557,
+				"operatingIncome": 22998000000,
+				"operatingIncomeRatio": 0.2811594557,
+				"totalOtherIncomeExpensesNet": -265000000,
+				"incomeBeforeTax": 22733000000,
+				"incomeBeforeTaxRatio": 0.2779197281,
+				"incomeTaxExpense": 2852000000,
+				"netIncome": 19881000000,
+				"netIncomeRatio": 0.2430529237,
+				"eps": 1.27,
+				"epsdiluted": 1.26,
+				"weightedAverageShsOut": 15697614000,
+				"weightedAverageShsOutDil": 15775021000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000077/0000320193-23-000077-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000077/aapl-20230701.htm"
+			},
+			{
+				"date": "2023-04-01",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2023-05-05",
+				"acceptedDate": "2023-05-04 18:03:52",
+				"calendarYear": "2023",
+				"period": "Q2",
+				"revenue": 94836000000,
+				"costOfRevenue": 52860000000,
+				"grossProfit": 41976000000,
+				"grossProfitRatio": 0.4426167278,
+				"researchAndDevelopmentExpenses": 7457000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 6201000000,
+				"otherExpenses": 64000000,
+				"operatingExpenses": 13658000000,
+				"costAndExpenses": 66518000000,
+				"interestIncome": 918000000,
+				"interestExpense": 930000000,
+				"depreciationAndAmortization": 2898000000,
+				"ebitda": 31216000000,
+				"ebitdaratio": 0.3291577038,
+				"operatingIncome": 28318000000,
+				"operatingIncomeRatio": 0.2985996879,
+				"totalOtherIncomeExpensesNet": 64000000,
+				"incomeBeforeTax": 28382000000,
+				"incomeBeforeTaxRatio": 0.2992745371,
+				"incomeTaxExpense": 4222000000,
+				"netIncome": 24160000000,
+				"netIncomeRatio": 0.2547555781,
+				"eps": 1.53,
+				"epsdiluted": 1.52,
+				"weightedAverageShsOut": 15787154000,
+				"weightedAverageShsOutDil": 15847050000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000064/0000320193-23-000064-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000064/aapl-20230401.htm"
+			},
+			{
+				"date": "2022-12-31",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2023-02-03",
+				"acceptedDate": "2023-02-02 18:01:30",
+				"calendarYear": "2023",
+				"period": "Q1",
+				"revenue": 117154000000,
+				"costOfRevenue": 66822000000,
+				"grossProfit": 50332000000,
+				"grossProfitRatio": 0.4296225481,
+				"researchAndDevelopmentExpenses": 7709000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 6607000000,
+				"otherExpenses": -393000000,
+				"operatingExpenses": 14316000000,
+				"costAndExpenses": 81138000000,
+				"interestIncome": 868000000,
+				"interestExpense": 1003000000,
+				"depreciationAndAmortization": 2916000000,
+				"ebitda": 38932000000,
+				"ebitdaratio": 0.332314731,
+				"operatingIncome": 36016000000,
+				"operatingIncomeRatio": 0.3074244157,
+				"totalOtherIncomeExpensesNet": -393000000,
+				"incomeBeforeTax": 35623000000,
+				"incomeBeforeTaxRatio": 0.3040698568,
+				"incomeTaxExpense": 5625000000,
+				"netIncome": 29998000000,
+				"netIncomeRatio": 0.2560561312,
+				"eps": 1.89,
+				"epsdiluted": 1.88,
+				"weightedAverageShsOut": 15892723000,
+				"weightedAverageShsOutDil": 15955718000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000006/0000320193-23-000006-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000006/aapl-20221231.htm"
+			},
+			{
+				"date": "2022-09-24",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2022-10-28",
+				"acceptedDate": "2022-10-27 18:01:14",
+				"calendarYear": "2022",
+				"period": "Q4",
+				"revenue": 90146000000,
+				"costOfRevenue": 52051000000,
+				"grossProfit": 38095000000,
+				"grossProfitRatio": 0.4225922393,
+				"researchAndDevelopmentExpenses": 6761000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 6440000000,
+				"otherExpenses": -237000000,
+				"operatingExpenses": 13201000000,
+				"costAndExpenses": 65252000000,
+				"interestIncome": 753000000,
+				"interestExpense": 827000000,
+				"depreciationAndAmortization": 2865000000,
+				"ebitda": 27759000000,
+				"ebitdaratio": 0.3079337963,
+				"operatingIncome": 24894000000,
+				"operatingIncomeRatio": 0.2761520201,
+				"totalOtherIncomeExpensesNet": -237000000,
+				"incomeBeforeTax": 24657000000,
+				"incomeBeforeTaxRatio": 0.2735229517,
+				"incomeTaxExpense": 3936000000,
+				"netIncome": 20721000000,
+				"netIncomeRatio": 0.2298604486,
+				"eps": 1.29,
+				"epsdiluted": 1.29,
+				"weightedAverageShsOut": 16030382000,
+				"weightedAverageShsOutDil": 16118465000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+			},
+			{
+				"date": "2022-06-25",
+				"symbol": "AAPL",
+				"reportedCurrency": "USD",
+				"cik": "0000320193",
+				"fillingDate": "2022-07-29",
+				"acceptedDate": "2022-07-28 18:06:56",
+				"calendarYear": "2022",
+				"period": "Q3",
+				"revenue": 82959000000,
+				"costOfRevenue": 47074000000,
+				"grossProfit": 35885000000,
+				"grossProfitRatio": 0.4325630733,
+				"researchAndDevelopmentExpenses": 6797000000,
+				"generalAndAdministrativeExpenses": 0,
+				"sellingAndMarketingExpenses": 0,
+				"sellingGeneralAndAdministrativeExpenses": 6012000000,
+				"otherExpenses": -10000000,
+				"operatingExpenses": 12809000000,
+				"costAndExpenses": 59883000000,
+				"interestIncome": 722000000,
+				"interestExpense": 719000000,
+				"depreciationAndAmortization": 2805000000,
+				"ebitda": 25881000000,
+				"ebitdaratio": 0.3119733844,
+				"operatingIncome": 23076000000,
+				"operatingIncomeRatio": 0.2781615015,
+				"totalOtherIncomeExpensesNet": -10000000,
+				"incomeBeforeTax": 23066000000,
+				"incomeBeforeTaxRatio": 0.27804096,
+				"incomeTaxExpense": 3624000000,
+				"netIncome": 19442000000,
+				"netIncomeRatio": 0.2343567304,
+				"eps": 1.2,
+				"epsdiluted": 1.2,
+				"weightedAverageShsOut": 16162945000,
+				"weightedAverageShsOutDil": 16262203000,
+				"link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000070/0000320193-22-000070-index.htm",
+				"finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000070/aapl-20220625.htm"
+			}
+		]
+	}
+}
+"""
+
+
+STOCK_PEERS_ENDPOINT = "v4/stock_peers"
+# The FMP Stock Peers endpoint provides a group of companies that trade on the same exchange, are in the same sector, and have a similar market capitalization. Investors can use this information to compare a company to its competitors and to identify companies that are performing well.
+
+# Query Parameters
+# symbol: string - The stock symbol of the company you want to get peers for.
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"peersList": [
+			"LPL",
+			"SNEJF",
+			"PCRFY",
+			"SONO",
+			"VZIO",
+			"MICS",
+			"WLDSW",
+			"KOSS",
+			"GPRO",
+			"SONY",
+			"UEIC",
+			"HEAR",
+			"VUZI",
+			"WLDS"
+		]
+	}
+]
+"""
+
+MARKET_OPEN_ENDPOINT = "v3/is-the-market-open"
+# The FMP Market Open endpoint provides information on whether the US market and EURONEXT, etc are open or closed. Investors can use this information to make informed investment decisions and to avoid trading during market closures.
+
+# Response
+"""
+{
+	"stockExchangeName": "New York Stock Exchange",
+	"stockMarketHours": {},
+	"stockMarketHolidays": [],
+	"isTheStockMarketOpen": true,
+	"isTheEuronextMarketOpen": false,
+	"isTheForexMarketOpen": true,
+	"isTheCryptoMarketOpen": true
+}
+"""
+
+DELISTED_COMPANIES_ENDPOINT = "v3/delisted-companies"
+# The FMP Delisted Companies endpoint provides a list of companies that have been delisted from US exchanges. Investors can use this information to avoid trading in delisted stocks and to identify companies that may be in financial trouble.
+
+# Query Parameters
+# page: integer - The page number of the results you want to retrieve.
+
+# Response
+"""
+[
+	{
+		"symbol": "GLCN",
+		"companyName": "VanEck China Growth Leaders ETF",
+		"exchange": "AMEX",
+		"ipoDate": "2010-10-14",
+		"delistedDate": "2023-09-21"
+	}
+]
+"""
+
+COMPANY_SHARE_FLOAT_ENDPOINT = "v4/shares_float"
+# The FMP Company Share Float endpoint provides the total number of shares that are publicly traded for a given company. This is also known as the company's float. The float is calculated by subtracting the number of restricted shares from the total number of outstanding shares.
+
+# Query Parameters
+# symbol: string - The stock symbol of the company you want to get the share float for.
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"freeFloat": 99.89311242764762,
+		"floatShares": 15891096314,
+		"outstandingShares": 15908100096,
+		"source": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000070/aapl-20220625.htm",
+		"date": "2022-11-01"
+	}
+]
+"""
+
+HISTORICAL_SHARE_FLOAT = "v4/historical/shares_float"
+# The FMP Historical Share Float endpoint provides historical data on the number of shares that are publicly traded for a given company. This is also known as the company's float. The float is calculated by subtracting the number of restricted shares from the total number of outstanding shares.
+
+# Query Parameters
+# symbol: string - The stock symbol of the company you want to get the historical share float for.
+
+# Response
+"""
+[
+	{
+		"symbol": "AAPL",
+		"date": "2024-01-31",
+		"freeFloat": 99.9125,
+		"floatShares": "15448370837",
+		"outstandingShares": "15461900000",
+		"source": null
+	}
+]
+"""
+
+ALL_SHARES_FLOAT_ENDPOINT = "v4/shares_float"
+# The number of shares available for trading, this includes Restricted Stock Units (RSUs)
+
+# Response
+"""
+[
+	{
+		"symbol": "XPP.L",
+		"freeFloat": "93.9722317935829",
+		"floatShares": "18545232",
+		"outstandingShares": "19734800",
+		"date": "2022-08-24"
+	}
+]
+"""
