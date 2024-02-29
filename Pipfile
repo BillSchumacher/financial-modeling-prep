@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 click = "*"
 requests = "*"
+requests-cache = "*"
+websocket-client = "*"
 
 [dev-packages]
 ruff = "*"
