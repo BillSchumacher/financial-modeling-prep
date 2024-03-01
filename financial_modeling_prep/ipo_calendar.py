@@ -1,18 +1,38 @@
+"""IPO calendar module."""
 IPO_CONFIRMED_ENDPOINT = "v4/ipo-calendar-confirmed"
 IPO_PROSPECTUS_ENDPOINT = "v4/ipo-calendar-prospectus"
 IPO_CALENDAR_BY_SYMBOL = " v3/ipo_calendar"
 
 
 class IPOCalendar:
+    """IPO calendar class.
+
+    Methods:
+    - get_ipo_calendar(from_date, to_date)
+    - get_ipo_prospectus(from_date, to_date)
+    - get_ipo_calendar_by_symbol(symbol, from_date, to_date)
+    """
+
     def __init__(self, api):
+        """
+        Initializes the IPOCalendar class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_ipo_calendar(self, from_date, to_date):
         """Get IPO calendar.
 
         Args:
-            from_date (str): The starting date of the IPOs. The date format is YYYY-MM-DD.
-            to_date (str): The ending date of the IPOs. The date format is YYYY-MM-DD.
+            from_date (str): The starting date of the IPOs.
+             The date format is YYYY-MM-DD.
+            to_date (str): The ending date of the IPOs.
+             The date format is YYYY-MM-DD.
 
         Returns: [
             {
@@ -22,7 +42,7 @@ class IPOCalendar:
                 "filingDate": "2023-01-31",
                 "acceptedDate": "2023-01-31 15:04:42",
                 "effectivenessDate": "2023-01-31",
-                "url": "https://www.sec.gov/Archives/edgar/data/1936702/000135445723000056/8A_Cert_CETU.pdf"
+                "url": "https://www.sec.gov/Archives/edgar/data/1936702/..."
             }
         ]
         """
@@ -32,8 +52,10 @@ class IPOCalendar:
         """Get IPO prospectus.
 
         Args:
-            from_date (str): The starting date of the IPOs. The date format is YYYY-MM-DD.
-            to_date (str): The ending date of the IPOs. The date format is YYYY-MM-DD.
+            from_date (str): The starting date of the IPOs.
+             The date format is YYYY-MM-DD.
+            to_date (str): The ending date of the IPOs.
+             The date format is YYYY-MM-DD.
 
         Returns: [
             {
@@ -49,7 +71,7 @@ class IPOCalendar:
                 "discountsAndCommissionsTotal": 656000,
                 "proceedsBeforeExpensesPerShare": 4.6,
                 "proceedsBeforeExpensesTotal": 7544000,
-                "url": "https://www.sec.gov/Archives/edgar/data/1679379/000121390023006765/fs12023a4_nyiaxinc.htm"
+                "url": "https://www.sec.gov/Archives/edgar/data/1679379..."
             }
         ]
         """
@@ -60,8 +82,10 @@ class IPOCalendar:
 
         Args:
             symbol (str): The symbol of the company.
-            from_date (str): The starting date of the IPOs. The date format is YYYY-MM-DD.
-            to_date (str): The ending date of the IPOs. The date format is YYYY-MM-DD.
+            from_date (str): The starting date of the IPOs.
+             The date format is YYYY-MM-DD.
+            to_date (str): The ending date of the IPOs.
+             The date format is YYYY-MM-DD.
 
         Returns: [
             {

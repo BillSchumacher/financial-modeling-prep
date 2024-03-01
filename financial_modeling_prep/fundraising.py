@@ -1,3 +1,4 @@
+"""Crowdfunding and Equity Offering API endpoints."""
 CROWDFUNDING_RSS_ENDPOINT = "v4/crowdfunding-offerings-rss-feed"
 CROWDFUNDING_SEARCH_ENDPOINT = "v4/crowdfunding-offerings/search"
 CROWDFUNDING_BY_CIK_ENDPOINT = "v4/crowdfunding-offerings"
@@ -7,7 +8,27 @@ EQUITY_OFFERING_BY_CIK_ENDPOINT = "v4/fundraising"
 
 
 class Fundraising:
+    """Fundraising API endpoints.
+
+    Methods:
+    - get_crowdfunding_rss(page=0)
+    - search_crowdfunding(name)
+    - get_crowdfunding_by_cik(cik)
+    - get_equity_offering_rss(page=0)
+    - search_equity_offering(name)
+    - get_equity_offering_by_cik(cik)
+    """
+
     def __init__(self, api):
+        """
+        Initializes the Fundraising class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_crowdfunding_rss(self, page=0):
@@ -20,7 +41,7 @@ class Fundraising:
             {
                 "cik": "0001706842",
                 "companyName": "StartUpWind, Inc",
-                "url": "https://www.sec.gov/Archives/edgar/data/1706842/000166516022002605/xslC_X01/primary_doc.xml",
+                "url": "https://www.sec.gov/Archives/edgar/data/1706842/...",
                 "formType": "C/A",
                 "formSignification": "Offering Statement Amendement",
                 "industry": null,
@@ -38,7 +59,7 @@ class Fundraising:
                 "intermediaryCommissionCik": "0001665160",
                 "intermediaryCommissionFileNumber": "007-00007",
                 "compensationAmount": "Up to 9% percent",
-                "financialInterest": "Three percent (3%) of securities of the total amount of investments raised in the offering, along the same terms as investors.",
+                "financialInterest": "Three percent (3%) of securities...",
                 "securityOfferedType": "Common Stock",
                 "securityOfferedOtherDescription": null,
                 "numberOfSecurityOffered": 4444,
@@ -76,7 +97,7 @@ class Fundraising:
         return self.api.get(CROWDFUNDING_RSS_ENDPOINT, params={"page": page})
 
     def search_crowdfunding(self, name):
-        """Allows users to search for crowdfunding campaigns by company name, campaign name, or platform.
+        """Search for crowdfunding campaigns by company, campaign, or platform.
 
         Args:
             name (str): The name of the company, campaign, or platform to search for.
@@ -92,7 +113,7 @@ class Fundraising:
         return self.api.get(CROWDFUNDING_SEARCH_ENDPOINT, params={"name": name})
 
     def get_crowdfunding_by_cik(self, cik):
-        """Provides a list of all crowdfunding campaigns that have been launched by a particular company.
+        """All crowdfunding campaigns for a particular company.
 
         Args:
             cik (str): The CIK of the company to search for.
@@ -115,7 +136,7 @@ class Fundraising:
                 "intermediaryCommissionCik": "0001665160",
                 "intermediaryCommissionFileNumber": "007-00007",
                 "compensationAmount": "7 - 13 percent",
-                "financialInterest": "Two percent (2%) of securities of the total amount of investments raised in the offering, along the same terms as investors.",
+                "financialInterest": "Two percent (2%) of securities of the...",
                 "securityOfferedType": "Other",
                 "securityOfferedOtherDescription": "Non-Voting Common Stock",
                 "numberOfSecurityOffered": 5000,
@@ -158,7 +179,7 @@ class Fundraising:
         Returns: [
             {
                 "cik": "0001949154",
-                "url": "https://www.sec.gov/Archives/edgar/data/1949154/000194915422000002/xslFormDX01/primary_doc.xml",
+                "url": "https://www.sec.gov/Archives/edgar/data/1949154/...",
                 "companyName": "Avlok Capital, LP - C2",
                 "entityName": "Avlok Capital, LP - C2",
                 "fillingDate": "2022-10-05 00:00:00",
@@ -209,7 +230,7 @@ class Fundraising:
         return self.api.get(EQUITY_OFFERING_RSS_ENDPOINT, params={"page": page})
 
     def search_equity_offering(self, name):
-        """Allows users to search for equity offerings by company name, offering name, or exchange.
+        """Search for equity offerings by company name, offering name, or exchange.
 
         Args:
             name (str): The name of the company, offering, or exchange to search for.
@@ -230,7 +251,7 @@ class Fundraising:
         return self.api.get(EQUITY_OFFERING_SEARCH_ENDPOINT, params={"name": name})
 
     def get_equity_offering_by_cik(self, cik):
-        """Provides a list of all equity offerings that have been launched by a particular company.
+        """Equity offerings that have been launched by a particular company.
 
         Args:
             cik (str): The CIK of the company to search for.

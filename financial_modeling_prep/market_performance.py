@@ -1,3 +1,4 @@
+"""Market Performance API endpoints."""
 MARKET_INDEX_ENDPOINT = "v3/quotes/index"
 SECTOR_PE_RATIO_ENDPOINT = "v4/sector_price_earning_ratio"
 INDUSTRY_PE_RATIO_ENDPOINT = "v4/industry_price_earning_ratio"
@@ -13,7 +14,49 @@ REPORT_BY_DATES_ENDPOINT = "v4/commitment_of_traders_report"
 
 
 class MarketPerformance:
+    """
+    A class to retrieve and analyze market performance data.
+
+    Explanation:
+    This class provides methods to fetch information about market indices,
+     sector PE ratios, industry PE ratios, sector performance,
+     historical sector performance, biggest gainers, biggest losers,
+     most active stocks, Commitment of Traders (COT) report analysis by
+     symbol or dates, and COT report by symbol or dates.
+
+    Methods:
+    - get_market_index: Get a list of all major stock market indices.
+    - get_sector_pe_ratio:
+      Get the price-to-earnings (PE) ratio for each sector of the stock market.
+    - get_industry_pe_ratio:
+      Get the price-to-earnings (PE) ratio for each industry of the stock market.
+    - get_sector_performance:
+      Get the performance of each sector of the stock market.
+    - get_sector_historical_performance:
+      Get historical data on the performance of each sector of the stock market.
+    - get_market_biggest_gainers: Get the biggest gainers in the market.
+    - get_market_biggest_losers: Get the biggest losers in the market.
+    - get_market_most_active: Get the most active stocks in the market.
+    - get_analysis_by_symbol:
+      Get the Commitment of Traders (COT) report analysis for a given symbol.
+    - get_analysis_by_dates:
+      Get the Commitment of Traders (COT) report analysis for a given date range.
+    - get_report_by_symbol:
+      Get the Commitment of Traders (COT) report for a given symbol.
+    - get_report_by_dates:
+      Get the Commitment of Traders (COT) report for a given date range.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the MarketPerformance class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_market_index(self):
@@ -155,7 +198,7 @@ class MarketPerformance:
         Returns: [
             {
                 "symbol": "DSLVF",
-                "name": "VelocityShares 3x Inverse Silver ETN Linked to the S&P GSCI Silver Index ER",
+                "name": "VelocityShares 3x Inverse Silver ETN Linked...",
                 "change": -0.13,
                 "price": 1.13,
                 "changesPercentage": -10.3175

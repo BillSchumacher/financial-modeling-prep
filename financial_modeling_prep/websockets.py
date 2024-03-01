@@ -1,7 +1,11 @@
+"""WebSocket clients.
+
+For interacting with the Company, Crypto, and Forex WebSocket servers.
+"""
 import json
 import threading
-import websocket
 
+import websocket
 
 COMPANY_WEBSOCKET_ENDPOINT = "wss://websockets.financemodelingprep.com"
 CRYPTO_WEBSOCKET_ENDPOINT = "wss://crypto.financemodelingprep.com"
@@ -14,7 +18,8 @@ class _WSClient:
 
     Methods:
         connect():
-            Establishes a connection to the WebSocket server and handles various WebSocket events.
+            Establishes a connection to the WebSocket server
+             and handles various WebSocket events.
 
         login():
             Sends login data to authenticate with the WebSocket server.
@@ -35,11 +40,11 @@ class _WSClient:
     ENDPOINT = None
 
     def __init__(self, api_key, callback):
-        """
-        Initializes a WebSocket client with the provided URL, API key, and callback function.
+        """Initializes a WebSocket client.
+
+         With the provided URL, API key, and callback function.
 
         Args:
-            ws_url (str): The URL of the WebSocket server.
             api_key (str): The API key for authentication.
             callback (function): The callback function to handle incoming messages.
 
@@ -54,22 +59,17 @@ class _WSClient:
         self.lock = threading.Lock()
 
     def connect(self):
-        """
-        Establishes a connection to the WebSocket server and handles various WebSocket events.
-
-        Args:
-            None
+        """Establishes a connection to the WebSocket server.
 
         Returns:
             None
         """
 
-        def on_message(ws, message):
-            """
-            Calls the callback function with the received message.
+        def on_message(_, message):
+            """Calls the callback function with the received message.
 
             Args:
-                ws: The websocket object.
+                _: The websocket object.
                 message: The message received from the websocket.
 
             Returns:
@@ -77,12 +77,11 @@ class _WSClient:
             """
             self.callback(message)
 
-        def on_error(ws, error):
-            """
-            Prints the error message received from the websocket.
+        def on_error(_, error):
+            """Prints the error message received from the websocket.
 
             Args:
-                ws: The websocket object.
+                _: The websocket object.
                 error: The error message received from the websocket.
 
             Returns:
@@ -90,25 +89,23 @@ class _WSClient:
             """
             print(f"Error: {error}")
 
-        def on_close(ws, *args):
-            """
-            Prints a message indicating that the connection has been closed.
+        def on_close(_, *__):
+            """Prints a message indicating that the connection has been closed.
 
             Args:
-                ws: The websocket object.
-                *args: Additional arguments passed to the function.
+                _: The websocket object.
+                *__: Additional arguments passed to the function.
 
             Returns:
                 None
             """
             print("Connection closed.")
 
-        def on_open(ws):
-            """
-            Initiates the login process when the WebSocket connection is opened.
+        def on_open(_):
+            """Initiates the login process when the WebSocket connection is opened.
 
             Args:
-                ws: The websocket object.
+                _: The websocket object.
 
             Returns:
                 None
@@ -126,11 +123,7 @@ class _WSClient:
         self.ws.run_forever()
 
     def login(self):
-        """
-        Sends login data with the API key to authenticate with the WebSocket server.
-
-        Args:
-            None
+        """Sends login data with the API key to authenticate with the WebSocket server.
 
         Returns:
             None
@@ -139,11 +132,7 @@ class _WSClient:
         self.ws.send(json.dumps(login_data))
 
     def start(self):
-        """
-        Starts a new thread to connect to the WebSocket server.
-
-        Args:
-            None
+        """Starts a new thread to connect to the WebSocket server.
 
         Returns:
             None
@@ -153,11 +142,7 @@ class _WSClient:
             self.thread.start()
 
     def stop(self):
-        """
-        Closes the WebSocket connection.
-
-        Args:
-            None
+        """Closes the WebSocket connection.
 
         Returns:
             None
@@ -166,8 +151,7 @@ class _WSClient:
             self.ws.close()
 
     def subscribe(self, ticker):
-        """
-        Subscribes to updates for a specific ticker.
+        """Subscribes to updates for a specific ticker.
 
         Args:
             ticker (str): The ticker symbol to subscribe to.
@@ -179,8 +163,7 @@ class _WSClient:
         self.ws.send(json.dumps(subscribe_data))
 
     def unsubscribe(self, ticker):
-        """
-        Unsubscribes from updates for a specific ticker.
+        """Unsubscribes from updates for a specific ticker.
 
         Args:
             ticker (str): The ticker symbol to unsubscribe from.
@@ -193,12 +176,12 @@ class _WSClient:
 
 
 class CompanyWSClient(_WSClient):
-    """
-    A WebSocket client for interacting with the Company WebSocket server.
+    """A WebSocket client for interacting with the Company WebSocket server.
 
     Methods:
         connect():
-            Establishes a connection to the WebSocket server and handles various WebSocket events.
+            Establishes a connection to the WebSocket server
+            and handles various WebSocket events.
 
         login():
             Sends login data to authenticate with the WebSocket server.
@@ -218,13 +201,23 @@ class CompanyWSClient(_WSClient):
     Response:
         s: Ticker related to the asset.
         t: Timestamp
-        type: Trade type (Communicates what type of price update this is. Will always be 'T' for last trade message, 'Q' for top-of-book update message, and 'B' for trade break messages.)
-        ap: The current lowest ask price. Only available for Quote updates, null otherwise.
-        as: The number of shares at the ask price. Only available for Quote updates, null otherwise.
-        bs: The number shares at the bid price. Only available for Quote updates, null otherwise.
-        bp: The current highest bid price. Only available for Quote updates, null otherwise.
-        lp: The last price the last trade was executed at. Only available for Trade and Break updates, null otherwise.
-        ls: The amount of shares (volume) traded at the last price. Only available for Trade and Break updates, null otherwise.
+        type: Trade type
+        (Communicates what type of price update this is.
+         Will always be 'T' for last trade message,
+        'Q' for top-of-book update message,
+        and 'B' for trade break messages.)
+        ap: The current lowest ask price.
+          Only available for Quote updates, null otherwise.
+        as: The number of shares at the ask price.
+          Only available for Quote updates, null otherwise.
+        bs: The number shares at the bid price.
+          Only available for Quote updates, null otherwise.
+        bp: The current highest bid price.
+          Only available for Quote updates, null otherwise.
+        lp: The last price the last trade was executed at.
+          Only available for Trade and Break updates, null otherwise.
+        ls: The amount of shares (volume) traded at the last price.
+          Only available for Trade and Break updates, null otherwise.
 
     Example:
     {
@@ -244,12 +237,12 @@ class CompanyWSClient(_WSClient):
 
 
 class CryptoWSClient(_WSClient):
-    """
-    A WebSocket client for interacting with the Crypto WebSocket server.
+    """A WebSocket client for interacting with the Crypto WebSocket server.
 
     Methods:
         connect():
-            Establishes a connection to the WebSocket server and handles various WebSocket events.
+            Establishes a connection to the WebSocket server
+             and handles various WebSocket events.
 
         login():
             Sends login data to authenticate with the WebSocket server.
@@ -269,13 +262,23 @@ class CryptoWSClient(_WSClient):
     Response:
         s: Ticker related to the asset.
         t: Timestamp
-        type: Trade type (Communicates what type of price update this is. Will always be 'T' for last trade message, 'Q' for top-of-book update message, and 'B' for trade break messages.)
-        ap: The current lowest ask price. Only available for Quote updates, null otherwise.
-        as: The number of shares at the ask price. Only available for Quote updates, null otherwise.
-        bs: The number shares at the bid price. Only available for Quote updates, null otherwise.
-        bp: The current highest bid price. Only available for Quote updates, null otherwise.
-        lp: The last price the last trade was executed at. Only available for Trade and Break updates, null otherwise.
-        ls: The amount of shares (volume) traded at the last price. Only available for Trade and Break updates, null otherwise.
+        type: Trade type
+        (Communicates what type of price update this is.
+         Will always be 'T' for last trade message,
+        'Q' for top-of-book update message,
+        and 'B' for trade break messages.)
+        ap: The current lowest ask price.
+          Only available for Quote updates, null otherwise.
+        as: The number of shares at the ask price.
+          Only available for Quote updates, null otherwise.
+        bs: The number shares at the bid price.
+          Only available for Quote updates, null otherwise.
+        bp: The current highest bid price.
+          Only available for Quote updates, null otherwise.
+        lp: The last price the last trade was executed at.
+          Only available for Trade and Break updates, null otherwise.
+        ls: The amount of shares (volume) traded at the last price.
+          Only available for Trade and Break updates, null otherwise.
 
     Example:
     {
@@ -294,14 +297,14 @@ class CryptoWSClient(_WSClient):
 
 
 class ForexWSClient(_WSClient):
-    """
-    A WebSocket client for interacting with the Forex WebSocket server.
+    """A WebSocket client for interacting with the Forex WebSocket server.
 
     Provides a Real-time feed of forex price and quote data.
 
     Methods:
         connect():
-            Establishes a connection to the WebSocket server and handles various WebSocket events.
+            Establishes a connection to the WebSocket server
+            and handles various WebSocket events.
 
         login():
             Sends login data to authenticate with the WebSocket server.
@@ -321,13 +324,23 @@ class ForexWSClient(_WSClient):
     Response:
         s: Ticker related to the asset.
         t: Timestamp
-        type: Trade type (Communicates what type of price update this is. Will always be 'T' for last trade message, 'Q' for top-of-book update message, and 'B' for trade break messages.)
-        ap: The current lowest ask price. Only available for Quote updates, null otherwise.
-        as: The number of shares at the ask price. Only available for Quote updates, null otherwise.
-        bs: The number shares at the bid price. Only available for Quote updates, null otherwise.
-        bp: The current highest bid price. Only available for Quote updates, null otherwise.
-        lp: The last price the last trade was executed at. Only available for Trade and Break updates, null otherwise.
-        ls: The amount of shares (volume) traded at the last price. Only available for Trade and Break updates, null otherwise.
+        type: Trade type
+        (Communicates what type of price update this is.
+         Will always be 'T' for last trade message,
+        'Q' for top-of-book update message,
+        and 'B' for trade break messages.)
+        ap: The current lowest ask price.
+          Only available for Quote updates, null otherwise.
+        as: The number of shares at the ask price.
+          Only available for Quote updates, null otherwise.
+        bs: The number shares at the bid price.
+          Only available for Quote updates, null otherwise.
+        bp: The current highest bid price.
+          Only available for Quote updates, null otherwise.
+        lp: The last price the last trade was executed at.
+          Only available for Trade and Break updates, null otherwise.
+        ls: The amount of shares (volume) traded at the last price.
+          Only available for Trade and Break updates, null otherwise.
 
     Example:
     {

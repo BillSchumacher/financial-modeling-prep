@@ -1,3 +1,4 @@
+"""Forex module."""
 FOREX_LIST_ENDPOINT = "v3/symbol/available-forex-currency-pairs"
 FULL_QUOTE_LIST_ENDPOINT = "v3/quotes/forex"
 FULL_QUOTE_ENDPOINT = "v3/quote/{symbol}"
@@ -6,7 +7,26 @@ FOREX_DAILY_ENDPOINT = "v3/historical-price-full/{symbol}"
 
 
 class Forex:
+    """Forex class to get forex data from the Yahoo Finance API.
+
+    Methods:
+    - get_forex_list()
+    - get_full_quote_list()
+    - get_full_quote(symbol)
+    - get_intraday_forex(timeframe, symbol, from_=None, to=None)
+    - get_forex_daily(symbol)
+    """
+
     def __init__(self, api):
+        """
+        Initializes the Forex class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_forex_list(self):
@@ -25,7 +45,7 @@ class Forex:
         return self.api.get(FOREX_LIST_ENDPOINT)
 
     def get_full_quote_list(self):
-        """Provides a list of all quotes for all currency pairs that are traded on the forex market.
+        """Provides a list of all quotes for all currency pairs.
 
         Returns: [
             {
@@ -60,7 +80,8 @@ class Forex:
         """Provides a full quote for a specific currency pair.
 
         A complete quote comprises the current exchange rate for the currency pair,
-         along with daily high, low, and open rates, the spread, and trading volume for the day.
+         along with daily high, low, and open rates, the spread,
+         and trading volume for the day.
 
         Args:
             symbol (str): the currency pair symbol
@@ -98,7 +119,8 @@ class Forex:
         """Provides intraday price data for a specific currency pair.
 
         Args:
-            timeframe (str): the timeframe of the data (1min, 5min, 15min, 30min, 1hour, 4hour)
+            timeframe (str): the timeframe of the data
+             (1min, 5min, 15min, 30min, 1hour, 4hour)
             symbol (str): the currency pair symbol
             from_ (str): the start date of the data
             to (str): the end date of the data
@@ -120,7 +142,7 @@ class Forex:
         )
 
     def get_forex_daily(self, symbol):
-        """Provides daily price data for all currency pairs that are traded on the forex market.
+        """Provides daily price data for all currency pairs.
 
         Args:
             symbol (str): the currency pair symbol

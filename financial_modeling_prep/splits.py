@@ -1,13 +1,30 @@
+"""Split class."""
 SPLITS_CALENDAR_ENDPOINT = "v3/stock_split_calendar"
 SPLITS_HISTORICAL_ENDPOINT = "v3/historical-price-full/stock_split/{symbol}"
 
 
 class Splits:
+    """Splits class.
+
+    Methods:
+    - `calendar(from_, to)`: Get stock splits calendar.
+    - `historical(symbol)`: Get historical stock splits for a symbol.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the Splits class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def calendar(self, from_: str, to: str):
-        """Get stock splits calendar
+        """Get stock splits calendar.
 
         Args:
             from_ (str): From date

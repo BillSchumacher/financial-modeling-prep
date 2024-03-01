@@ -1,3 +1,4 @@
+"""Statement Analysis module for the package."""
 KEY_METRICS_ENDPOINT = "v3/key-metrics/{symbol}"
 KEY_METRICS_TTM_ENDPOINT = "v3/key-metrics-ttm/{symbol}"
 RATIOS_ENDPOINT = "v3/ratios/{symbol}"
@@ -12,11 +13,46 @@ ENTERPRISE_VALUES_ENDPOINT = "v4/enterprise-values/{symbol}"
 
 
 class StatementAnalysis:
+    """
+    A class to perform analysis on financial statements.
+
+    Explanation:
+    This class provides methods to retrieve and analyze financial statement growth,
+     balance sheet growth, income growth, cash flow growth, ratios, key metrics,
+     financial scores, owner earnings, and enterprise values for a company.
+
+    Methods:
+    - get_financial_statement_growth: Get the financial growth rate for a company.
+    - get_balance_sheet_growth: Get the balance sheet growth rate for a company.
+    - get_income_growth: Get the income growth rate for a company.
+    - get_cashflow_growth: Get the cash flow growth rate for a company.
+    - get_ratios: Get financial ratios for a company.
+    - get_ratios_ttm:
+        Get financial ratios for a company for the trailing twelve months (TTM).
+    - get_key_metrics: Get key financial metrics for a company.
+    - get_key_metrics_ttm:
+        Get key financial metrics for a company for the trailing twelve months (TTM).
+    - get_financial_score: Get a financial score for a company.
+    - get_owner_earnings: Get the owner earnings for a company.
+    - get_enterprise_values: Get the enterprise value of a company.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the StatementAnalysis class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_financial_statement_growth(self, symbol, period="annual", limit=40):
-        """Get the financial growth rate for a company. Measure how quickly a company's overall financial performance is improving.
+        """Get the financial growth rate for a company.
+
+        Measure how quickly a company's overall financial performance is improving.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -71,7 +107,9 @@ class StatementAnalysis:
         )
 
     def get_balance_sheet_growth(self, symbol, period="annual", limit=40):
-        """Get the balance sheet growth rate for a company. Measure how quickly a company's assets and liabilities are growing.
+        """Get the balance sheet growth rate for a company.
+
+         Measure how quickly a company's assets and liabilities are growing.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -136,7 +174,9 @@ class StatementAnalysis:
         )
 
     def get_income_growth(self, symbol, period="annual", limit=40):
-        """Get the income growth rate for a company. Measure how quickly a company's income is growing.
+        """Get the income growth rate for a company.
+
+        Measure how quickly a company's income is growing.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -188,7 +228,9 @@ class StatementAnalysis:
         )
 
     def get_cashflow_growth(self, symbol, period="annual", limit=40):
-        """Get the cash flow growth rate for a company. Measure how quickly a company's cash flow is growing.
+        """Get the cash flow growth rate for a company.
+
+        Measure how quickly a company's cash flow is growing.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -242,7 +284,9 @@ class StatementAnalysis:
         )
 
     def get_ratios(self, symbol, period="annual", limit=140):
-        """Get financial ratios for a company, such as the P/B ratio and the ROE. Assess a company's financial health and compare it to its competitors.
+        """Get financial ratios for a company, such as the P/B ratio and the ROE.
+
+        Assess a company's financial health and compare it to its competitors.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -317,7 +361,10 @@ class StatementAnalysis:
         )
 
     def get_ratios_ttm(self, symbol):
-        """Get financial ratios for a company, such as the P/B ratio and the ROE, for the trailing twelve months (TTM). Get a more up-to-date view of a company's financial health.
+        """Get financial ratios for a company.
+
+         Such as the P/B ratio and the ROE, for the trailing twelve months (TTM).
+         Get a more up-to-date view of a company's financial health.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -387,7 +434,11 @@ class StatementAnalysis:
         return self.api.get(RATIOS_TTM_ENDPOINT, params={"symbol": symbol})
 
     def get_key_metrics(self, symbol):
-        """Get key financial metrics for a company, including revenue, net income, earnings per share (EPS), and price-to-earnings ratio (P/E ratio). Assess a company's financial performance and compare it to its competitors.
+        """Get key financial metrics for a company.
+
+        Including revenue, net income, earnings per share (EPS),
+           and price-to-earnings ratio (P/E ratio).
+        Assess a company's financial performance and compare it to its competitors.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -461,7 +512,12 @@ class StatementAnalysis:
         return self.api.get(KEY_METRICS_ENDPOINT, params={"symbol": symbol})
 
     def get_key_metrics_ttm(self, symbol):
-        """Get key financial metrics for a company, including revenue, net income, EPS, and P/E ratio, for the trailing twelve months (TTM). Get a more up-to-date view of a company's financial performance.
+        """Get key financial metrics for a company.
+
+         Including revenue, net income, EPS, and P/E ratio,
+          for the trailing twelve months (TTM).
+
+        Get a more up-to-date view of a company's financial performance.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -534,7 +590,9 @@ class StatementAnalysis:
         return self.api.get(KEY_METRICS_TTM_ENDPOINT, params={"symbol": symbol})
 
     def get_financial_score(self, symbol):
-        """Get a financial score for a company, which is a measure of its overall financial health.
+        """Get a financial score for a company.
+
+        Which is a measure of its overall financial health.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -557,7 +615,11 @@ class StatementAnalysis:
         return self.api.get(FINANCIAL_SCORE_ENDPOINT, params={"symbol": symbol})
 
     def get_owner_earnings(self, symbol):
-        """Get the owner earnings for a company, which is a measure of its profitability after accounting for all expenses, including taxes and debt payments. Assess a company's true profitability and compare it to its competitors.
+        """Get the owner earnings for a company.
+
+         Which is a measure of its profitability after accounting for all expenses,
+          including taxes and debt payments.
+        Assess a company's true profitability and compare it to its competitors.
 
         Args:
             symbol (str): The company’s ticker symbol.
@@ -577,7 +639,10 @@ class StatementAnalysis:
         return self.api.get(OWNER_EARNINGS_ENDPOINT, params={"symbol": symbol})
 
     def get_enterprise_values(self, symbol, period="annual", limit=140):
-        """Get the enterprise value of a company, which is the total value of a company, including its equity and debt. Assess a company's overall value and compare it to its peers.
+        """Get the enterprise value of a company.
+
+        Which is the total value of a company, including its equity and debt.
+        Assess a company's overall value and compare it to its peers.
 
         Args:
             symbol (str): The company’s ticker symbol.

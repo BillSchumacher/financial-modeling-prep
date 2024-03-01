@@ -1,3 +1,4 @@
+"""This module contains the Quote class."""
 FULL_QUOTE_ENDPOINT = "v3/quote/{symbol}"
 QUOTE_ORDER_ENDPOINT = "v3/quote-order/{symbol}"
 SIMPLE_QUOTE = "v3/quote-short/{symbol}"
@@ -19,11 +20,45 @@ ALL_FOREX_PRICES_ENDPOINT = "v3/fx"
 
 
 class Quote:
+    """Quote class.
+
+    Methods:
+    - get_full_quote(symbol)
+    - get_quote_order(symbol)
+    - get_simple_quote(symbol)
+    - get_otc_quote(symbol)
+    - get_exchange_prices(exchange)
+    - get_stock_price_change(symbol)
+    - get_aftermarket_trade(symbol)
+    - get_aftermarket_quote(symbol)
+    - get_batch_quote(symbol)
+    - get_batch_trade(symbol)
+    - get_last_forex(pair)
+    - get_last_crypto(pair)
+    - get_realtime_price(symbol)
+    - get_all_live_prices_short()
+    - get_live_full_price_with_orders(symbol)
+    - get_all_live_full_price_with_orders()
+    - get_forex_prices(pair)
+    - get_all_forex_prices()
+    """
+
     def __init__(self, api):
+        """
+        Initializes the Quote class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_full_quote(self, symbol):
-        """This endpoint gives you the latest bid and ask prices for a stock, as well as the volume and last trade price in real time.
+        """This endpoint gives you the latest bid and ask prices for a stock.
+
+         As well as the volume and last trade price in real time.
 
         Args:
             symbol: the stock symbol
@@ -58,7 +93,9 @@ class Quote:
         return self.api.get(FULL_QUOTE_ENDPOINT.format(symbol=symbol))
 
     def get_quote_order(self, symbol):
-        """This endpoint gives you the latest bid and ask prices for a stock, as well as the volume and last trade price in real time.
+        """This endpoint gives you the latest bid and ask prices for a stock.
+
+         As well as the volume and last trade price in real time.
 
         Args:
             symbol: the stock symbol
@@ -93,7 +130,9 @@ class Quote:
         return self.api.get(QUOTE_ORDER_ENDPOINT.format(symbol=symbol))
 
     def get_simple_quote(self, symbol):
-        """This endpoint gives you a simplified view of a stock's quote, including the current price, volume, and last trade price.
+        """This endpoint gives you a simplified view of a stock's quote.
+
+         Including the current price, volume, and last trade price.
 
         Args:
             symbol: the stock symbol
@@ -109,7 +148,9 @@ class Quote:
         return self.api.get(SIMPLE_QUOTE.format(symbol=symbol))
 
     def get_otc_quote(self, symbol):
-        """This endpoint gives you the latest bid and ask prices for an over-the-counter (OTC) stock, as well as the volume and last trade price in real time.
+        """This endpoint gives you the latest bid and ask prices for an OTC stock.
+
+        As well as the volume and last trade price in real time.
 
         Args:
             symbol: the stock symbol
@@ -166,7 +207,7 @@ class Quote:
         return self.api.get(EXCHANGE_PRICES_ENDPOINT.format(exchange=exchange))
 
     def get_stock_price_change(self, symbol):
-        """This endpoint gives you the change in a stock's price over a given period of time.
+        """Change in a stock's price over a given period of time.
 
         Args:
             symbol: the stock symbol
@@ -191,7 +232,7 @@ class Quote:
         return self.api.get(STOCK_PRICE_CHANGE_ENDPOINT.format(symbol=symbol))
 
     def get_aftermarket_trade(self, symbol):
-        """This endpoint gives you information on trades that have occurred in the aftermarket.
+        """Information on trades that have occurred in the aftermarket.
 
         Args:
             symbol: the stock symbol
@@ -206,7 +247,7 @@ class Quote:
         return self.api.get(AFTERMARKET_TRADE_ENDPOINT.format(symbol=symbol))
 
     def get_aftermarket_quote(self, symbol):
-        """This endpoint gives you the latest bid and ask prices for a stock in the aftermarket.
+        """Latest bid and ask prices for a stock in the aftermarket.
 
         Args:
             symbol: the stock symbol
@@ -242,7 +283,7 @@ class Quote:
         return self.api.get(BATCH_QUOTE_ENDPOINT.format(symbol=symbol))
 
     def get_batch_trade(self, symbol):
-        """This endpoint gives you the ability to place trades for multiple stocks at once.
+        """Gets trades for multiple stocks at once.
 
         Args:
             symbol: the stock symbol
@@ -289,7 +330,9 @@ class Quote:
         return self.api.get(LAST_CRYPTO_ENDPOINT.format(pair=pair))
 
     def get_realtime_price(self, symbol):
-        """This endpoint gives you the latest price for a stock, ETF, mutual fund, or cryptocurrency.
+        """This endpoint gives you the latest price.
+
+         For a stock, ETF, mutual fund, or cryptocurrency.
 
         Args:
             symbol: the stock symbol
@@ -316,7 +359,9 @@ class Quote:
         return self.api.get(ALL_LIVE_PRICES_SHORT_ENDPOINT)
 
     def get_live_full_price_with_orders(self, symbol):
-        """This endpoint gives you the latest bid and ask prices for a stock, as well as the volume and last trade price in real time.
+        """This endpoint gives you the latest bid and ask prices for a stock.
+
+         As well as the volume and last trade price in real time.
 
         Args:
             symbol: the stock symbol

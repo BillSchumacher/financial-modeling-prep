@@ -1,3 +1,4 @@
+"""Valuation module for the Stocks API."""
 DISCOUNTED_CASHFLOW_ENDPOINT = "v3/discounted-cash-flow/{symbol}"
 ADVANCED_DCF_ENDPOINT = "v4/advanced_discounted_cash_flow"
 LEVERED_DCF_ENDPOINT = "v4/advanced_levered_discounted_cash_flow"
@@ -6,11 +7,42 @@ HISTORICAL_RATING_ENDPOINT = "v3/historical-rating/{symbol}"
 
 
 class Valuation:
+    """
+    A class to access valuation information for companies.
+
+    Explanation:
+    This class provides methods to retrieve discounted cash flow (DCF) valuations,
+     advanced DCF valuations with multiple scenarios, levered DCF valuations
+      considering debt levels, company ratings, and historical ratings for companies.
+
+    Methods:
+    - discounted_cashflow:
+    Get the discounted cash flow (DCF) valuation for a company.
+    - advanced_dcf:
+    Get the DCF valuation for a company with advanced features.
+    - levered_dcf:
+    Get the DCF valuation for a company, taking into account its debt levels.
+    - company_rating: Get the rating of a company.
+    - historical_rating: Get the historical rating of a company.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the Valuation class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def discounted_cashflow(self, symbol: str):
-        """Get the discounted cash flow (DCF) valuation for a company, a method to estimate the value of an investment based on its expected future cash flows.
+        """Get the discounted cash flow (DCF) valuation for a company.
+
+        A method to estimate the value of an investment
+         based on its expected future cash flows.
 
         Args:
             symbol (str): Symbol of the company
@@ -27,7 +59,9 @@ class Valuation:
         return self.api.get(DISCOUNTED_CASHFLOW_ENDPOINT.format(symbol=symbol))
 
     def advanced_dcf(self, symbol: str):
-        """Get the DCF valuation for a company with advanced features like modeling multiple scenarios and using different valuation methods.
+        """Get the DCF valuation for a company with advanced features.
+
+        Like modeling multiple scenarios and using different valuation methods.
 
         Args:
             symbol (str): Symbol of the company
@@ -143,7 +177,10 @@ class Valuation:
         return self.api.get(LEVERED_DCF_ENDPOINT, params={"symbol": symbol})
 
     def company_rating(self, symbol: str):
-        """Get the rating of a company. Investors can use this information to get a quick overview of a company's financial health and to compare different companies.
+        """Get the rating of a company.
+
+        Investors can use this information to get a quick overview of a
+         company's financial health and to compare different companies.
 
         Args:
             symbol (str): Symbol of the company
@@ -173,11 +210,15 @@ class Valuation:
         return self.api.get(COMPANY_RATING_ENDPOINT.format(symbol=symbol))
 
     def historical_rating(self, symbol: str, limit: int = 140):
-        """Get the historical rating of a company. Investors can use this information to track the changes in a company's rating over time and to identify trends in its performance.
+        """Get the historical rating of a company.
+
+        Investors can use this information to track the changes in a
+         company's rating over time and to identify trends in its performance.
 
         Args:
             symbol (str): Symbol of the company
-            limit (int, optional): Limit the number of ratings to be returned. Defaults to 140.
+            limit (int, optional): Limit the number of ratings to be returned.
+              Defaults to 140.
 
         Returns: [
             {

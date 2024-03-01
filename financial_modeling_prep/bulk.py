@@ -30,6 +30,15 @@ class BulkData:
     """
 
     def __init__(self, api):
+        """
+        Initializes the BulkData class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def batch_eod_prices(self, date: str):
@@ -42,7 +51,7 @@ class BulkData:
         return self.api.get(BATCH_EOD_PRICES_ENDPOINT, {"date": date})
 
     def bulk_income_statements(self, year: int, period: str):
-        """All quarter or annual Income Statements for specific year
+        """All quarter or annual Income Statements for specific year.
 
         :param year: (required) The year for which to return income statements.
             The year must be a valid year in the format YYYY.
@@ -55,7 +64,7 @@ class BulkData:
         )
 
     def bulk_balance_sheets(self, year: int, period: str):
-        """All quarter or annual Balance Sheets for specific year
+        """All quarter or annual Balance Sheets for specific year.
 
         :param year: (required) The year for which to return balance sheets.
             The year must be a valid year in the format YYYY.
@@ -68,7 +77,7 @@ class BulkData:
         )
 
     def bulk_cash_flow_statements(self, year: int, period: str):
-        """All quarter or annual Cash Flow Statements for specific year
+        """All quarter or annual Cash Flow Statements for specific year.
 
         :param year: (required) The year for which to return cash flow statements.
             The year must be a valid year in the format YYYY.
@@ -81,7 +90,7 @@ class BulkData:
         )
 
     def bulk_ratios(self, year: int, period: str):
-        """All quarter or annual Ratios for specific year
+        """All quarter or annual Ratios for specific year.
 
         :param year: (required) The year for which to return ratios.
             The year must be a valid year in the format YYYY.
@@ -92,7 +101,7 @@ class BulkData:
         return self.api.get(BULK_RATIOS_ENDPOINT, {"year": year, "period": period})
 
     def bulk_key_metrics(self, year: int, period: str):
-        """All quarter or annual Key Metrics for specific year
+        """All quarter or annual Key Metrics for specific year.
 
         :param year: (required) The year for which to return key metrics.
             The year must be a valid year in the format YYYY.
@@ -103,7 +112,7 @@ class BulkData:
         return self.api.get(BULK_KEY_METRICS_ENDPOINT, {"year": year, "period": period})
 
     def bulk_earnings_surprises(self, year: int):
-        """All Earnings Surprises for specific year
+        """All Earnings Surprises for specific year.
 
         :param year: (required) The year for which to return earnings surprises.
             The year must be a valid year in the format YYYY.
@@ -112,14 +121,14 @@ class BulkData:
         return self.api.get(BULK_EARNING_SURPRISES_ENDPOINT, {"year": year})
 
     def bulk_profiles(self):
-        """All profiles from our API in one CSV file
+        """All profiles from our API in one CSV file.
 
         :return:
         """
         return self.api.get(BULK_PROFILES_ENDPOINT)
 
     def bulk_stock_peers(self):
-        """Stock peers for all symbols with profile
+        """Stock peers for all symbols with profile.
 
         :return:
         """
@@ -140,28 +149,28 @@ class BulkData:
         return self.api.get(ALL_LATEST_DCF_ENDPOINT)
 
     def bulk_key_metrics_ttm(self):
-        """Key Metrics TTM for every stock
+        """Key Metrics TTM for every stock.
 
         :return:
         """
         return self.api.get(BULK_KEY_METRICS_TTM_ENDPOINT)
 
     def bulk_ratios_ttm(self):
-        """Ratios TTM for every stock
+        """Ratios TTM for every stock.
 
         :return:
         """
         return self.api.get(BULK_RATIO_TTM_ENDPOINT)
 
     def bulk_scores(self):
-        """All stock financial scores
+        """All stock financial scores.
 
         :return:
         """
         return self.api.get(BULK_SCORES_ENDPOINT)
 
     def bulk_financial_growth(self, year: int, period: str):
-        """All quarter or annual growth entries for specific year
+        """All quarter or annual growth entries for specific year.
 
         :param year: (required) The year for which to return growth entries.
             The year must be a valid year in the format YYYY.
@@ -174,12 +183,13 @@ class BulkData:
         )
 
     def bulk_income_statements_growth(self, year: int, period: str):
-        """All quarter or annual Income Statement Growth for specific year
+        """All quarter or annual Income Statement Growth for specific year.
 
-        :param year: (required) The year for which to return income statement growth.
-            The year must be a valid year in the format YYYY.
-        :param period: (required) The period for which to return income statement growth.
-            The period must be either 'annual' or 'quarterly'.
+        Args:
+            year: (required) The year for which to return income statement growth.
+              The year must be a valid year in the format YYYY.
+            period: (required) The period for which to return income statement growth.
+              The period must be either 'annual' or 'quarterly'.
         :return:
         """
         return self.api.get(
@@ -187,7 +197,7 @@ class BulkData:
         )
 
     def bulk_balance_sheets_growth(self, year: int, period: str):
-        """All quarter or annual Balance Sheet Growth for specific year
+        """All quarter or annual Balance Sheet Growth for specific year.
 
         :param year: (required) The year for which to return balance sheet growth.
             The year must be a valid year in the format YYYY.
@@ -200,12 +210,13 @@ class BulkData:
         )
 
     def bulk_cash_flow_statements_growth(self, year: int, period: str):
-        """All quarter or annual Cash Flow Statement Growth for specific year
+        """All quarter or annual Cash Flow Statement Growth for specific year.
 
-        :param year: (required) The year for which to return cash flow statement growth.
-            The year must be a valid year in the format YYYY.
-        :param period: (required) The period for which to return cash flow statement growth.
-            The period must be either 'annual' or 'quarterly'.
+        Args:
+            year: (required) The year for which to return cash flow statement growth.
+              The year must be a valid year in the format YYYY.
+            period: (required) The period to return cash flow statement growth.
+              The period must be either 'annual' or 'quarterly'.
         :return:
         """
         return self.api.get(
@@ -213,21 +224,21 @@ class BulkData:
         )
 
     def bulk_price_target_summary(self):
-        """All price target summaries
+        """All price target summaries.
 
         :return:
         """
         return self.api.get(BULK_PRICE_TARGET_SUMMARY_ENDPOINT)
 
     def bulk_upgrades_downgrades_consensus(self):
-        """All upgrades downgrades consensus
+        """All upgrades downgrades consensus.
 
         :return:
         """
         return self.api.get(BULK_UPGRADES_DOWNGRADES_CONSENSUS_ENDPOINT)
 
     def bulk_etf_holdings(self):
-        """Latest ETF Holders in bulk
+        """Latest ETF Holders in bulk.
 
         :return:
         """

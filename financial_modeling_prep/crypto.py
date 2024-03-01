@@ -1,3 +1,4 @@
+"""CryptoCurrency class for interacting with cryptocurrency data."""
 CRYPTOCURRENCIES_LIST_ENDPOINT = "v3/symbol/available-crpytocurrencies"
 FULL_QUOTE_LIST_ENDPOINT = "v3/quotes/crypto"
 FULL_QUOTE_ENDPOINT = "v3/quote/{symbol}"
@@ -6,7 +7,33 @@ CRYPTOCURRENCY_DAILY_ENDPOINT = "v3/historical-price-full/{symbol}"
 
 
 class CryptoCurrency:
+    """
+    A class to interact with cryptocurrency data.
+
+    Explanation:
+    This class provides methods to retrieve information about cryptocurrencies,
+     including lists of available cryptocurrencies, full quote lists,
+     full quotes for specific cryptocurrencies, intraday price data,
+     and daily price data.
+
+    Methods:
+    - get_cryptocurrencies_list: Get a list of available cryptocurrencies.
+    - get_full_quote_list: Get a full quote list for all cryptocurrencies.
+    - get_full_quote: Get a full quote for a specific cryptocurrency.
+    - get_intraday_cryptocurrency: Get intraday price data for a cryptocurrency.
+    - get_cryptocurrency_daily: Get daily price data for a cryptocurrency.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the CryptoCurrency class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_cryptocurrencies_list(self):
@@ -95,7 +122,8 @@ class CryptoCurrency:
         """Get intraday price data for a cryptocurrency.
 
         Args:
-            timeframe (str): The timeframe for the chart data. Supported values are "1min", "5min", "15min", "30min", "1hour", "4hour"
+            timeframe (str): The timeframe for the chart data.
+             Supported values are "1min", "5min", "15min", "30min", "1hour", "4hour"
             symbol (str): The symbol of the cryptocurrency.
 
         Returns:[
@@ -115,7 +143,6 @@ class CryptoCurrency:
 
     def get_cryptocurrency_daily(self, symbol):
         """Get daily price data for a cryptocurrency.
-
 
         Args:
             symbol (str): The symbol of the cryptocurrency.

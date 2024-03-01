@@ -1,3 +1,4 @@
+"""Company Search API."""
 GENERAL_SEARCH_ENDPOINT = "v3/search"
 TICKER_SEARCH_ENDPOINT = "v3/search-ticker"
 NAME_SEARCH_ENDPOINT = "v3/search-name"
@@ -7,12 +8,52 @@ CUSIP_SEARCH_ENDPOINT = "v3/cusip/{cusip_number}"
 
 
 class CompanySearch:
+    """
+    The Company Search API.
+
+    Used to find company names, stock symbols,
+     and other financial instruments by using a search query.
+
+    Methods:
+    - `general_search(query, limit=10, exchange=None)`:
+    Search over 70,000 symbols by symbol name or company name,
+     including cryptocurrencies, forex, stocks, etf and other financial instruments.
+    - `ticker_search(query, limit=10, exchange=None)`:
+    Find ticker symbols and exchanges for both equity securities and
+    exchange-traded funds (ETFs) by searching with the company name or ticker symbol.
+    - `name_search(query, limit=10, exchange=None)`:
+    Find ticker symbols and exchange information for equity securities
+     and exchange-traded funds (ETFs) by searching with the company name.
+    - `cik_name_search(company_name)`:
+    Discover CIK numbers for SEC-registered entities with our CIK Name Search.
+    - `cik_search(cik_number)`:
+    Quickly find registered company names linked to SEC-registered
+     entities using their CIK Number with our CIK Search.
+    - `cusip_search(cusip_number)`:
+    Access information about financial instruments and securities by
+     simply entering their unique CUSIP (Committee on Uniform
+      Securities Identification Procedures) numbers with our CUSIP Search.
+
+
+    """
+
     def __init__(self, api):
+        """
+        Initializes the CompanySearch class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def general_search(self, query: str, limit: int = 10, exchange: str = None) -> dict:
         """
-        Search over 70,000 symbols by symbol name or company name, including cryptocurrencies, forex, stocks, etf and other financial instruments.
+        Search over 70,000 symbols by symbol name or company name.
+
+        Including cryptocurrencies, forex, stocks, etf and other financial instruments.
 
         Args:
             query: string - The search query (Symbol)
@@ -41,7 +82,10 @@ class CompanySearch:
 
     def ticker_search(self, query: str, limit: int = 10, exchange: str = None) -> dict:
         """
-        Find ticker symbols and exchanges for both equity securities and exchange-traded funds (ETFs) by searching with the company name or ticker symbol.
+        Find ticker symbols and exchanges.
+
+        For both equity securities and exchange-traded funds (ETFs)
+          by searching with the company name or ticker symbol.
 
         Args:
             query: string - The search query (Company Name or Ticker Symbol)
@@ -70,7 +114,10 @@ class CompanySearch:
 
     def name_search(self, query: str, limit: int = 10, exchange: str = None) -> dict:
         """
-        Find ticker symbols and exchange information for equity securities and exchange-traded funds (ETFs) by searching with the company name.
+        Find ticker symbols and exchange information.
+
+        For equity securities and exchange-traded funds (ETFs)
+         by searching with the company name.
 
         Args:
             query: string - The search query (Company Name)
@@ -123,7 +170,9 @@ class CompanySearch:
 
     def cik_search(self, cik_number: str) -> dict:
         """
-        Quickly find registered company names linked to SEC-registered entities using their CIK Number with our CIK Search.
+        Quickly find registered company names.
+
+        Linked to SEC-registered entities using their CIK Number with our CIK Search.
 
         Args:
             cik_number: string - The CIK number to search
@@ -139,7 +188,11 @@ class CompanySearch:
 
     def cusip_search(self, cusip_number: str) -> dict:
         """
-        Access information about financial instruments and securities by simply entering their unique CUSIP (Committee on Uniform Securities Identification Procedures) numbers with our CUSIP Search.
+        Access information about financial instruments and securities.
+
+        By simply entering their unique CUSIP
+        (Committee on Uniform Securities Identification Procedures)
+        numbers with our CUSIP Search.
 
         Args:
             cusip_number: string - The CUSIP number to search

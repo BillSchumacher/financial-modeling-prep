@@ -1,3 +1,4 @@
+"""Constituents module for the API."""
 SP500_CONSTITUENTS_ENDPOINT = "v3/sp500_constituent"
 HISTORICAL_SP500_CONSTITUENTS_ENDPOINT = "v3/historical/sp500_constituent"
 NASDAQ_CONSTITUENTS_ENDPOINT = "v3/nasdaq_constituent"
@@ -7,7 +8,39 @@ HISTORICAL_DOW_JONES_CONSTITUENTS_ENDPOINT = "v3/historical/dowjones_constituent
 
 
 class Constituents:
+    """
+    A class to access information about index constituents.
+
+    Explanation:
+    This class provides methods to retrieve lists of companies included in the
+     S&P 500, NASDAQ, and Dow Jones indices, as well as historical data for
+      these index constituents.
+
+    Methods:
+    - sp500_constituents:
+     Provides a list of all companies that are included in the S&P 500 index.
+    - historical_sp500_constituents:
+     Provides historical data for all companies in the S&P 500 index.
+    - nasdaq_constituents:
+     Provides a list of all companies that are included in the NASDAQ index.
+    - historical_nasdaq_constituents:
+     Provides historical data for all companies in the NASDAQ index.
+    - dow_jones_constituents:
+     Provides a list of all companies that are included in the Dow Jones index.
+    - historical_dow_jones_constituents:
+     Provides historical data for all companies in the Dow Jones index.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the Constituents class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def sp500_constituents(self, datatype: str = "json"):
@@ -34,7 +67,7 @@ class Constituents:
         return self.api.get(SP500_CONSTITUENTS_ENDPOINT, params=params)
 
     def historical_sp500_constituents(self):
-        """Provides historical data for all companies that are included in the S&P 500 index.
+        """Provides historical data for all companies in the S&P 500 index.
 
         Returns:
             dict: [
@@ -75,7 +108,7 @@ class Constituents:
         return self.api.get(NASDAQ_CONSTITUENTS_ENDPOINT, params=params)
 
     def historical_nasdaq_constituents(self):
-        """Provides historical data for all companies that are included in the NASDAQ index.
+        """Provides historical data for all companies in the NASDAQ index.
 
         Returns:
             dict: [
@@ -116,7 +149,7 @@ class Constituents:
         return self.api.get(DOW_JONES_CONSTITUENTS_ENDPOINT, params=params)
 
     def historical_dow_jones_constituents(self):
-        """Provides historical data for all companies that are included in the Dow Jones index.
+        """Provides historical data for all companies in the Dow Jones index.
 
         Returns:
             dict: [

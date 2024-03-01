@@ -1,10 +1,34 @@
+"""Environmental, Social, and Governance (ESG) data for stocks and funds."""
 ESG_SEARCH_ENDPOINT = "v4/esg-environmental-social-governance-data"
 ESG_RATINGS_ENDPOINT = "v4/esg-enviromental-social-governance-data-ratings"
 ESG_BENCHMARK_ENDPOINT = "v4/esg-environmental-social-governance-sector-benchmark"
 
 
 class ESG:
+    """
+    A class to access ESG data for stocks and funds.
+
+    Explanation:
+    This class provides methods to search for ESG data,
+    retrieve ESG ratings, and get ESG benchmark data for
+    specific symbols or years.
+
+    Methods:
+    - esg_search: Search for ESG data for a specific symbol.
+    - esg_ratings: Get ESG ratings for a specific symbol.
+    - esg_benchmark: Get ESG benchmark data for a specific year.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the ESG class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def esg_search(self, symbol: str) -> dict:
@@ -26,7 +50,7 @@ class ESG:
                 "industry": "Electronic Computers",
                 "formType": "10-Q",
                 "acceptedDate": "2022-04-28 18:03:58",
-                "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000059/0000320193-22-000059-index.htm"
+                "url": "https://www.sec.gov/Archives/edgar/data/320193/..."
             }
         ]
         """

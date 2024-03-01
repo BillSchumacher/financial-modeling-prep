@@ -4,12 +4,20 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-click = "*"
 requests = "*"
 requests-cache = "*"
 websocket-client = "*"
+financial-modeling-prep = {file = "."}
 
 [dev-packages]
+black = "*"
+isort = "*"
+flake8 = "*"
+pylint = "*"
+build = "*"
+twine = "*"
+pre-commit = "*"
+coveralls = "*"
 ruff = "*"
 
 [requires]

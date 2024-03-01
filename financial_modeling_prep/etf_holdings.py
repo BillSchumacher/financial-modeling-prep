@@ -1,3 +1,4 @@
+"""ETF Holdings API endpoints."""
 ETF_HOLDING_DATES_ENDPOINT = "v4/etf-holdings/portfolio-date"
 ETF_HOLDINGS_ENDPOINT = "v4/etf-holdings"
 ETF_HOLDER_ENDPOINT = "v3/etf-holder/{symbol}"
@@ -8,11 +9,44 @@ ETF_SECTOR_EXPOSURE_ENDPOINT = "v3/etf-stock-exposure/{symbol}"
 
 
 class ETFHoldings:
+    """
+    A class to interact with ETF holdings data.
+
+    Explanation:
+    This class provides methods to retrieve information about ETF holdings,
+     ETF holders, ETF information, sector weighting, country weighting,
+      and sector exposure for a given ETF symbol.
+
+    Methods:
+    - get_etf_holdings: Get a list of all the securities held by an ETF.
+    - get_etf_holding_dates: Get a list of dates when ETF holdings are updated.
+    - get_etf_holder: Get a list of institutional investors that own shares of an ETF.
+    - get_etf_information: Get basic information about an ETF.
+    - get_etf_sector_weighting:
+     Get the percentage breakdown of an ETF's assets by sector.
+    - get_etf_country_weighting:
+     Get the percentage breakdown of an ETF's assets by country.
+    - get_etf_sector_exposure:
+     Get the measure of an ETF's performance attributable to each sector.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the ETFHoldings class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_etf_holdings(self, symbol: str, cik: str = None, date: str = None):
-        """The FMP ETF Holdings endpoint provides a list of all the securities that are held by an ETF. For example, an investor may want to know which ETF has the highest exposure to a particular industry or sector.
+        """Provides a list of all the securities that are held by an ETF.
+
+        For example, an investor may want to know which ETF has the
+          highest exposure to a particular industry or sector.
 
         Args:
             symbol (str): symbol
@@ -48,11 +82,14 @@ class ETFHoldings:
         ]
         """
         return self.api.get(
-            ETF_HOLDINGS_ENDPOINT, dict(symbol=symbol, cik=None, date=date)
+            ETF_HOLDINGS_ENDPOINT, {"symbol": symbol, "cik": cik, "date": date}
         )
 
     def get_etf_holding_dates(self, symbol: str, cik: str = None):
-        """The FMP ETF Holding Dates endpoint provides a list of the dates on which ETF holdings are updated. For example, an investor may want to know when an ETF's holdings are updated in order to make sure that they are still aligned with their investment goals.
+        """Provides a list of the dates on which ETF holdings are updated.
+
+        For example, an investor may want to know when an ETF's holdings are updated
+          in order to make sure that they are still aligned with their investment goals.
 
         Args:
             symbol (str): symbol
@@ -67,10 +104,13 @@ class ETFHoldings:
             }
         ]
         """
-        return self.api.get(ETF_HOLDING_DATES_ENDPOINT, dict(symbol=symbol, cik=cik))
+        return self.api.get(ETF_HOLDING_DATES_ENDPOINT, {"symbol": symbol, "cik": cik})
 
     def get_etf_holder(self, symbol: str):
-        """The FMP ETF Holder endpoint provides a list of all the institutional investors that own shares of an ETF. For example, an investor may want to know which institutions are buying or selling shares of a particular ETF.
+        """Provides a list of all the institutional investors that own shares of an ETF.
+
+        For example, an investor may want to know which institutions are
+          buying or selling shares of a particular ETF.
 
         Args:
             symbol (str): symbol
@@ -91,7 +131,11 @@ class ETFHoldings:
         return self.api.get(ETF_HOLDER_ENDPOINT.format(symbol=symbol))
 
     def get_etf_information(self, symbol: str):
-        """The FMP ETF Information endpoint provides basic information about an ETF, such as its ticker symbol, name, expense ratio, and asset under management. For example, an investor may want to compare the expense ratios of different ETFs to find the one that is most cost-effective.
+        """Provides basic information about an ETF.
+
+        Such as its ticker symbol, name, expense ratio, and asset under management.
+        For example, an investor may want to compare the expense ratios of different
+          ETFs to find the one that is most cost-effective.
 
         Args:
             symbol (str): symbol
@@ -103,7 +147,7 @@ class ETFHoldings:
                 "aum": 375825060000,
                 "avgVolume": 81144062,
                 "cusip": "",
-                "description": "The Trust seeks to achieve its investment objective by holding a portfolio of the common stocks that are included in the index (the Portfolio), with the weight of each stock in the Portfolio substantially corresponding to the weight of such stock in the index.",
+                "description": "The Trust seeks to achieve its investment objective...",
                 "domicile": "US",
                 "etfCompany": "SPDR",
                 "expenseRatio": 0.0945,
@@ -118,15 +162,19 @@ class ETFHoldings:
                         "industry": "Real Estate"
                     }
                 ],
-                "website": "https://www.ssga.com/us/en/institutional/etfs/funds/spdr-sp-500-etf-trust-spy",
+                "website": "https://www.ssga.com/us/en/institutional/etfs/...",
                 "holdingsCount": 503
             }
         ]
         """
-        return self.api.get(ETF_INFORMATION_ENDPOINT, dict(symbol=symbol))
+        return self.api.get(ETF_INFORMATION_ENDPOINT, {"symbol": symbol})
 
     def get_etf_sector_weighting(self, symbol: str):
-        """The FMP ETF Sector Weighting endpoint provides a breakdown of the percentage of an ETF's assets that are invested in each sector. For example, an investor may want to invest in an ETF that has a high exposure to the technology sector if they believe that the technology sector is poised for growth.
+        """Provides a breakdown of the percentage of an ETF's assets in each sector.
+
+         For example, an investor may want to invest in an ETF that
+          has a high exposure to the technology sector if they believe
+          that the technology sector is poised for growth.
 
         Args:
             symbol (str): symbol
@@ -141,7 +189,11 @@ class ETFHoldings:
         return self.api.get(ETF_SECTOR_WEIGHTING_ENDPOINT.format(symbol=symbol))
 
     def get_etf_country_weighting(self, symbol: str):
-        """The FMP ETF Country Weighting endpoint provides a breakdown of the percentage of an ETF's assets that are invested in each country. For example, an investor may want to invest in an ETF that has a high exposure to China if they believe that the Chinese economy is poised for growth.
+        """Provides a breakdown of the percentage of an ETF's assets in each country.
+
+         For example, an investor may want to invest in an ETF that
+           has a high exposure to China if they believe that the
+           Chinese economy is poised for growth.
 
         Args:
             symbol (str): symbol
@@ -156,7 +208,11 @@ class ETFHoldings:
         return self.api.get(ETF_COUNTRY_WEIGHTING_ENDPOINT.format(symbol=symbol))
 
     def get_etf_sector_exposure(self, symbol: str):
-        """The FMP ETF Sector Exposure endpoint provides a measure of how much of an ETF's performance is attributable to each sector. For example, an investor may want to invest in an ETF that has a high exposure to the technology sector if they believe that the technology sector is likely to outperform the overall market.
+        """Provides a measure of an ETF's performance is attributable to each sector.
+
+         For example, an investor may want to invest in an ETF that
+          has a high exposure to the technology sector if they believe
+           that the technology sector is likely to outperform the overall market.
 
         Args:
             symbol (str): symbol

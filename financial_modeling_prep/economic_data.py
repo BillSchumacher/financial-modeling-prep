@@ -1,3 +1,4 @@
+"""Economic Data API module."""
 TREASURY_RATES_ENDPOINT = "v4/treasury"
 ECONOMIC_INDICATORS_ENDPOINT = "v4/economic"
 ECONOMIC_CALENDAR_ENDPOINT = "v4/economic_calendar"
@@ -5,7 +6,35 @@ MARKET_RISK_PREMIUM_ENDPOINT = "v4/market_risk_premium"
 
 
 class EconomicData:
+    """
+    A class to access sales revenue segmentation information for companies.
+
+    Explanation:
+    This class provides methods to retrieve revenue breakdowns by
+      product category and geographic region for a company.
+
+    Methods:
+    - `get_treasury_rates(from_date, to_date)`:
+    Provides real-time and historical Treasury rates for all maturities.
+    - `get_economic_indicators(name, from_date, to_date)`:
+    Provides real-time and historical economic data for economic indicators.
+    - `get_economic_calendar(from_date, to_date)`:
+    Provides a calendar of upcoming economic data releases.
+    - `get_market_risk_premium()`:
+    Provides real-time and historical market risk premium data.
+
+    """
+
     def __init__(self, api):
+        """
+        Initializes the EconomicData class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_treasury_rates(self, from_date, to_date):
@@ -39,10 +68,21 @@ class EconomicData:
         )
 
     def get_economic_indicators(self, name, from_date, to_date):
-        """Provides real-time and historical economic data for a variety of economic indicators, such as GDP, unemployment, and inflation.
+        """Provides real-time and historical economic data.
+
+        For a variety of economic indicators, such as GDP, unemployment, and inflation.
 
         Args:
-            name (str): The name of the economic indicator (GDP, realGDP, nominalPotentialGDP, realGDPPerCapita, federalFunds, CPI, inflationRate, inflation, retailSales, consumerSentiment, durableGoods, unemploymentRate, totalNonfarmPayroll, initialClaims, industrialProductionTotalIndex, newPrivatelyOwnedHousingUnitsStartedTotalUnits, totalVehicleSales, retailMoneyFunds, smoothedUSRecessionProbabilities, 3MonthOr90DayRatesAndYieldsCertificatesOfDeposit, commercialBankInterestRateOnCreditCardPlansAllAccounts, 30YearFixedRateMortgageAverage, 15YearFixedRateMortgageAverage)
+            name (str): The name of the economic indicator
+              GDP, realGDP, nominalPotentialGDP, realGDPPerCapita,
+              federalFunds, CPI, inflationRate, inflation, retailSales,
+              consumerSentiment, durableGoods, unemploymentRate,
+              totalNonfarmPayroll, initialClaims, industrialProductionTotalIndex,
+              newPrivatelyOwnedHousingUnitsStartedTotalUnits, totalVehicleSales,
+              retailMoneyFunds, smoothedUSRecessionProbabilities,
+              3MonthOr90DayRatesAndYieldsCertificatesOfDeposit,
+              commercialBankInterestRateOnCreditCardPlansAllAccounts,
+              30YearFixedRateMortgageAverage, 15YearFixedRateMortgageAverage
             from_date (str): The start date for the data
             to_date (str): The end date for the data
 

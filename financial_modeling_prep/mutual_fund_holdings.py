@@ -1,3 +1,4 @@
+"""Mutual Fund Holdings API endpoints."""
 MUTUAL_FUND_DATES_ENDPOINT = "v4/mutual-fund-holdins/portfolio-date"
 MUTUAL_FUNDS_ENDPOINT = "v4/mutual-fund-holdings"
 MUTUAL_FUND_BY_NAME_ENDPOINT = "v4/mutual-fund-holdings/name"
@@ -5,7 +6,30 @@ MUTUAL_FUND_HOLDER_ENDPOINT = "v3/mutual-fund-holder/{symbol}"
 
 
 class MutualFundHoldings:
+    """
+    A class to access mutual fund holdings information.
+
+    Explanation:
+    This class provides methods to retrieve mutual fund portfolio dates,
+     holdings, mutual funds by name, and mutual fund holders.
+
+    Methods:
+    - portfolio_date: Get mutual fund portfolio date.
+    - holdings: Get mutual fund holdings.
+    - by_name: Get mutual fund by name.
+    - holder: Get mutual fund holder.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the MutualFundHoldings class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def portfolio_date(self, symbol, cik=None):

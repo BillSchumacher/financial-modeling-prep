@@ -1,3 +1,4 @@
+"""Commodities module to retrieve commodities data."""
 COMMODITIES_LIST_ENDPOINT = "v3/symbol/available-commodities"
 FULL_QUOTE_LIST_ENDPOINT = "v3/quotes/commodity"
 FULL_QUOTE_ENDPOINT = "v3/quote/{symbol}"
@@ -7,23 +8,23 @@ COMMODITIES_DAILY_ENDPOINT = "v3/historical-price-full/{symbol}"
 
 class Commodities:
     """
-    A class for interacting with the Financial Modeling Prep API to retrieve commodities data.
+    A class to retrieve commodities data.
 
     Methods:
         get_commodities_list():
             Provides a list of available commodities.
 
         get_full_quote_list():
-            Provides a list of all quotes for all commodities traded on exchanges worldwide.
+            Provides a list of all quotes for all commodities traded.
 
         get_full_quote(symbol):
-            Provides real-time quotes for all commodities traded on exchanges worldwide.
+            Provides real-time quotes for all commodities traded.
 
         get_intraday_commodities(timeframe, symbol, from_date=None, to_date=None):
-            Provides intraday price data for all commodities traded on exchanges worldwide.
+            Provides intraday price data for all commodities traded.
 
         get_commodities_daily(symbol):
-            Provides daily price data for all commodities traded on exchanges worldwide.
+            Provides daily price data for all commodities traded.
     """
 
     def __init__(self, api):
@@ -55,7 +56,7 @@ class Commodities:
         return self.api.get(COMMODITIES_LIST_ENDPOINT)
 
     def get_full_quote_list(self):
-        """Provides a list of all quotes for all commodities that are traded on exchanges around the world.
+        """Provides a list of all quotes for all commodities.
 
         Returns: [
             {
@@ -87,7 +88,7 @@ class Commodities:
         return self.api.get(FULL_QUOTE_LIST_ENDPOINT)
 
     def get_full_quote(self, symbol):
-        """Provides real-time quotes for all commodities that are traded on exchanges around the world.
+        """Provides real-time quotes for all commodities.
 
         Args:
             symbol (str): The commodity symbol.
@@ -122,10 +123,11 @@ class Commodities:
         return self.api.get(FULL_QUOTE_ENDPOINT.format(symbol=symbol))
 
     def get_intraday_commodities(self, timeframe, symbol, from_date=None, to_date=None):
-        """Provides intraday price data for all commodities that are traded on exchanges around the world.
+        """Provides intraday price data for all commodities that are traded.
 
         Args:
-            timeframe (str): The timeframe for the chart data. Available values: 1min, 5min, 15min, 30min, 1hour, 4hour.
+            timeframe (str): The timeframe for the chart data.
+               Available values: 1min, 5min, 15min, 30min, 1hour, 4hour.
             symbol (str): The commodity symbol.
             from_date (str, optional): From date (YYYY-MM-DD). Defaults to None.
             to_date (str, optional): To date (YYYY-MM-DD). Defaults to None.
@@ -147,7 +149,7 @@ class Commodities:
         )
 
     def get_commodities_daily(self, symbol):
-        """Provides daily price data for all commodities that are traded on exchanges around the world.
+        """Provides daily price data for all commodities that are traded.
 
         Args:
             symbol (str): The commodity symbol.

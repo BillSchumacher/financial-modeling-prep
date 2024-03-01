@@ -1,9 +1,33 @@
+"""Sales Revenue by Segments API endpoints and class."""
 REVENUE_PRODUCT_SEGMENTATION_ENDPOINT = "v4/revenue-product-segmentation"
 REVENUE_GEO_SEGMENTATION_ENDPOINT = "v4/revenue-geographic-segmentation"
 
 
 class SalesRevenueBySegments:
+    """
+    A class to access sales revenue segmentation information for companies.
+
+    Explanation:
+    This class provides methods to retrieve revenue breakdowns by
+      product category and geographic region for a company.
+
+    Methods:
+    - revenue_product_segmentation:
+     Provides a breakdown of a company's revenue by product category.
+    - revenue_geo_segmentation:
+     Provides a breakdown of a company's revenue by geographic region.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the SalesRevenueBySegments class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def revenue_product_segmentation(self, symbol, period, structure="flat"):

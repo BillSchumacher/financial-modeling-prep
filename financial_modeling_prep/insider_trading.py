@@ -1,3 +1,4 @@
+"""Insider Trading API endpoints."""
 INSIDER_TRADES_RSS_ENDPOINT = "v4/insider-trading-rss-feed"
 INSIDER_TRADES_SEARCH_ENDPOINT = "v4/insider-trading"
 TRANSACTION_TYPES_ENDPOINT = "v4/insider-trading-transaction-type"
@@ -9,7 +10,37 @@ FAIL_TO_DELIVER_ENDPOINT = "v4/fail-to-deliver"
 
 
 class InsiderTrading:
+    """
+    A class to access insider trading data.
+
+    Explanation:
+      This class provides methods to retrieve information about insider trades,
+       insider transaction types, insiders by company symbol,
+       insider trade statistics, CIK number mapping, fail to deliver data, and more.
+
+    Methods:
+    - insider_trades_rss: Get an RSS feed of insider trades.
+    - insider_trades_search:
+     Search for insider trades by company name, ticker symbol, or insider name.
+    - transaction_types: Get a list of insider transaction types.
+    - insiders_by_symbol: Get a list of insiders for a given company.
+    - insider_trade_statistics:
+      Get statistics on insider trading activity for a company.
+    - cik_mapper: Convert a CIK number to a company name.
+    - cik_mapper_by_symbol: Get a list of CIK numbers and company names by symbol.
+    - fail_to_deliver: Get a list of fail to deliver data for a company.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the InsiderTrading class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def insider_trades_rss(self, page=None):
@@ -23,7 +54,7 @@ class InsiderTrading:
                 "title": "4 - Atlantic Union Bankshares Corp (0000883948) (Issuer)",
                 "fillingDate": "2022-10-05 13:43:47",
                 "symbol": "AUB",
-                "link": "https://www.sec.gov/Archives/edgar/data/883948/000141588922010327/0001415889-22-010327-index.htm",
+                "link": "https://www.sec.gov/Archives/edgar/data/883948/...",
                 "reportingCik": "0001745407",
                 "issuerCik": "0000883948"
             }
@@ -32,14 +63,16 @@ class InsiderTrading:
         return self.api.get(INSIDER_TRADES_RSS_ENDPOINT, params={"page": page})
 
     def insider_trades_search(
-        self, symbol=None, reportingCik=None, companyCik=None, page=None
+        self, symbol=None, reporting_cik=None, company_cik=None, page=None
     ):
-        """Allows users to search for insider trades by company name, ticker symbol, or insider name.
+        """Allows users to search for insider trades.
+
+         By company name, ticker symbol, or insider name.
 
         Args:
             symbol (str, optional): The ticker symbol of the company
-            reportingCik (str, optional): The CIK of the reporting owner
-            companyCik (str, optional): The CIK of the company
+            reporting_cik (str, optional): The CIK of the reporting owner
+            company_cik (str, optional): The CIK of the company
             page (int, optional): The page number to retrieve
 
         Returns: [
@@ -54,7 +87,7 @@ class InsiderTrading:
                 "companyCik": "0000320193",
                 "reportingName": "O'BRIEN DEIRDRE",
                 "typeOfOwner": "officer: Senior Vice President",
-                "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000097/0000320193-22-000097-index.htm",
+                "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
                 "securityName": "Common Stock",
                 "price": 141.09,
                 "formType": "4",
@@ -66,14 +99,16 @@ class InsiderTrading:
             INSIDER_TRADES_SEARCH_ENDPOINT,
             params={
                 "symbol": symbol,
-                "reportingCik": reportingCik,
-                "companyCik": companyCik,
+                "reportingCik": reporting_cik,
+                "companyCik": company_cik,
                 "page": page,
             },
         )
 
     def transaction_types(self):
-        """Provides a list of all insider transaction types, such as purchases, sales, and gifts.
+        """Provides a list of all insider transaction types.
+
+        Such as purchases, sales, and gifts.
 
         Returns: [
             "J-Other",
@@ -103,7 +138,9 @@ class InsiderTrading:
         return self.api.get(INSIDERS_BY_SYMBOL_ENDPOINT, params={"symbol": symbol})
 
     def insider_trade_statistics(self, symbol):
-        """Provides statistics on insider trading activity, such as the total number of insider trades,
+        """Provides statistics on insider trading activity.
+
+        Such as the total number of insider trades,
          the average value of insider trades, and the most popular insider stocks.
 
         Args:
@@ -145,7 +182,6 @@ class InsiderTrading:
             }
         ]
         """
-
         return self.api.get(CIK_MAPPER_ENDPOINT, params={"page": page, "name": name})
 
     def cik_mapper_by_symbol(self, symbol):

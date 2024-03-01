@@ -5,7 +5,7 @@ DAILY_CHART_EOD_ENDPOINT = "v3/historical-price-full/{symbol}"
 
 class Charts:
     """
-    A class for interacting with the Financial Modeling Prep API to retrieve intraday and daily stock charts for companies.
+    A class to retrieve intraday and daily stock charts for companies.
 
     Methods:
         get_intraday_chart(timeframe, symbol, from_date, to_date):
@@ -28,11 +28,10 @@ class Charts:
         self.api = api
 
     def get_intraday_chart(self, timeframe, symbol, from_date, to_date):
-        """The FMP Chart Intraday endpoint provides an intraday chart for a given company.
+        """Provides an intraday chart for a given company.
 
-         The chart displays the stock price of the company at different time intervals throughout the day.
-         The user can specify the time interval that they want to view,
-            such as 1 minute, 5 minutes, 15 minutes, or 60 minutes.
+         The chart displays the stock price of the company at
+            different time intervals throughout the day.
 
         :param timeframe: The time interval for the chart.
             The user can specify 1min, 5min, 15min, 30min, 1hour, 4hour.
@@ -59,8 +58,10 @@ class Charts:
         """The FMP Daily Chart endpoint provides a daily chart for a given company.
 
          The chart displays the opening price, high price, low price,
-            and closing price of the company's stock for each day in a specified date range.
-         By default the limit is 5 years of historical data, to get data prior to this date,
+            and closing price of the company's stock for each day
+            in a specified date range.
+         By default, the limit is 5 years of historical data,
+          to get data prior to this date,
          please use the to & from parameters with a limit of 5 years.
 
         :param symbol: The stock symbol of the company.

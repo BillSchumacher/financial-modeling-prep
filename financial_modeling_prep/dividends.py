@@ -1,9 +1,31 @@
+"""Dividends module."""
 DIVIDENDS_CALENDAR_ENDPOINT = "v3/stock_dividend_calendar"
 DIVIDENDS_HISTORICAL_ENDPOINT = "v3/historical_price_full/stock_dividend/{symbol}"
 
 
 class Dividends:
+    """
+    A class to access dividend information for stocks.
+
+    Explanation:
+    This class provides methods to retrieve dividends calendar
+     for a date range and historical dividends for a specific stock.
+
+    Methods:
+    - get_dividends_calendar: Get dividends calendar for a date range.
+    - get_dividends_historical: Get historical dividends for a stock.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the Dividends class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_dividends_calendar(self, from_date, to_date):

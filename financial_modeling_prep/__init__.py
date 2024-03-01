@@ -1,4 +1,6 @@
 """Financial Modeling Prep API client."""
+from __future__ import annotations
+
 from requests_cache import CachedSession
 
 from financial_modeling_prep.bulk import BulkData
@@ -37,6 +39,11 @@ from financial_modeling_prep.stock_list import StockList
 from financial_modeling_prep.technical_indicators import TechnicalIndicators
 from financial_modeling_prep.upgrades_downgrades import UpgradesAndDowngrades
 from financial_modeling_prep.valuation import Valuation
+from financial_modeling_prep.websockets import (
+    CompanyWSClient,
+    CryptoWSClient,
+    ForexWSClient,
+)
 
 session = CachedSession(
     "fmp_cache",
@@ -49,30 +56,17 @@ session = CachedSession(
 
 
 class FinancialModelingPrep:
-    """
-    A class for interacting with the Financial Modeling Prep API.
-
-    Args:
-        api_key (str): The API key for accessing the API.
+    """A class for interacting with the Financial Modeling Prep API.
 
     Methods:
-        get(endpoint, params=None):
-            Makes an API request to the specified endpoint with optional parameters.
-
-            Args:
-                endpoint (str): The API endpoint to request data from.
-                params (dict, optional): Additional parameters for the API request.
-
-            Returns:
-                requests.Response: The response object from the API request.
+    - get(endpoint, params=None):
     """
 
     def __init__(self, api_key):
-        """
-        Initializes the FinancialModelingPrep API client with various data retrieval modules.
+        """Initializes the FinancialModelingPrep API client.
 
         Args:
-            api_key (str): The API key for accessing the FinancialModelingPrep API.
+            api_key (str): The API key for FinancialModelingPrep.com.
 
         Returns:
             None
@@ -128,8 +122,17 @@ class FinancialModelingPrep:
             params = {}
         params["apikey"] = self.api_key
 
-        return session.get(
+        response = session.get(
             f"https://financialmodelingprep.com/api/{endpoint}",
             params=params,
             timeout=5,
         )
+        return response.json()
+
+
+__all__ = [
+    "CompanyWSClient",
+    "CryptoWSClient",
+    "FinancialModelingPrep",
+    "ForexWSClient",
+]

@@ -1,3 +1,4 @@
+"""Provides access to the Institutional Stock Ownership API."""
 FORM_13F_ENDPOINT = "v3/form-thirteen/{cik}"
 FORM_13F_DATES_ENDPOINT = "v3/form-thirteen-date/{cik}"
 FORM_13F_ASSET_ALLOCATION_ENDPOINT = "v4/13f-asset-allocation"
@@ -23,11 +24,42 @@ INSTITUTIONAL_HOLDER_ENDPOINT = "v3/institutional-holder/{symbol}"
 
 
 class InstitutionalStockOwnership:
+    """Provides access to the Institutional Stock Ownership API.
+
+    Methods:
+    - get_form_13f(cik, date=None)
+    - get_form_13f_dates(cik)
+    - get_form_13f_asset_allocation(date)
+    - get_institutional_holders_list()
+    - search_institutional_holders(name)
+    - get_portfolio_holdings_dates(cik)
+    - get_institutional_holder_rss(page=None)
+    - get_institutional_stock_ownership(symbol, include_current_quarter=None)
+    - get_stock_ownership_by_holders(symbol, date, page=None)
+    - get_portfolio_holdings_summary(cik, page=None)
+    - get_industry_ownership_summary(date, cik, page=None)
+    - get_ownership_by_shares_held(symbol, date, page=None)
+    - get_portfolio_composition(cik, date, page=None)
+    - get_institutional_holder(symbol)
+    """
+
     def __init__(self, api):
+        """
+        Initializes the InstitutionalStockOwnership with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_form_13f(self, cik, date=None):
-        """Provides quarterly reports on the equity holdings of institutional investment managers with over $100 million in assets under management.
+        """Provides quarterly reports on the equity holdings.
+
+         Of institutional investment managers with over
+          $100 million in assets under management.
 
         Args:
             cik (str): CIK of the company
@@ -45,8 +77,8 @@ class InstitutionalStockOwnership:
                 "shares": 53700,
                 "titleOfClass": "ADR",
                 "value": 3498000,
-                "link": "https://www.sec.gov/Archives/edgar/data/1388838/000117266121002324/0001172661-21-002324-index.htm",
-                "finalLink": "https://www.sec.gov/Archives/edgar/data/1388838/000117266121002324/infotable.xml"
+                "link": "https://www.sec.gov/Archives/edgar/data/1388838/...",
+                "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
             }
         ]
         """
@@ -72,7 +104,9 @@ class InstitutionalStockOwnership:
         return self.api.get(FORM_13F_DATES_ENDPOINT.format(cik=cik))
 
     def get_form_13f_asset_allocation(self, date):
-        """Provides the asset allocation of institutional investment managers, including their holdings of stocks, bonds, and other assets.
+        """Provides the asset allocation of institutional investment managers.
+
+        Including their holdings of stocks, bonds, and other assets.
 
         Args:
             date (str): The date of the filing. Format: YYYY-MM-DD
@@ -93,7 +127,9 @@ class InstitutionalStockOwnership:
         return self.api.get(FORM_13F_ASSET_ALLOCATION_ENDPOINT, params={"date": date})
 
     def get_institutional_holders_list(self):
-        """Provides a list of all institutional investment managers that are required to file Form 13F reports.
+        """Provides a list of all institutional investment managers.
+
+        That are required to file Form 13F reports.
 
         Returns: [
             {
@@ -109,10 +145,13 @@ class InstitutionalStockOwnership:
         return self.api.get(INSTITUTIONAL_HOLDERS_LIST_ENDPOINT)
 
     def search_institutional_holders(self, name):
-        """Allows users to search for institutional investment managers by name, ticker symbol, or CUSIP number.
+        """Allows users to search for institutional investment managers.
+
+         By name, ticker symbol, or CUSIP number.
 
         Args:
-            name (str): The name of the institutional investment manager, e.g. "Vanguard Group"
+            name (str): The name of the institutional investment manager,
+             e.g. "BERKSHIRE"
 
         Returns: [
             {
@@ -126,7 +165,7 @@ class InstitutionalStockOwnership:
         )
 
     def get_portfolio_holdings_dates(self, cik):
-        """Provides the dates on which institutional investment managers file their portfolio holdings.
+        """Provides dates that investment managers file their portfolio holdings.
 
         Args:
             cik (str): CIK of the company
@@ -159,12 +198,12 @@ class InstitutionalStockOwnership:
         """
         return self.api.get(INSTITUTIONAL_HOLDER_RSS_ENDPOINT, params={"page": page})
 
-    def get_institutional_stock_ownership(self, symbol, includeCurrentQuarter=None):
-        """Provides a list of institutional investment managers that hold a particular stock.
+    def get_institutional_stock_ownership(self, symbol, include_current_quarter=None):
+        """Provides a list of institutional investment managers holding a given stock.
 
         Args:
             symbol (str): The stock symbol, e.g. "AAPL"
-            includeCurrentQuarter (bool): Whether to include the current quarter's data
+            include_current_quarter (bool): Include the current quarter
 
         Returns: [
             {
@@ -209,11 +248,13 @@ class InstitutionalStockOwnership:
         """
         return self.api.get(
             INSTITUTIONAL_STOCK_OWNERSHIP_ENDPOINT,
-            params={"symbol": symbol, "includeCurrentQuarter": includeCurrentQuarter},
+            params={"symbol": symbol, "includeCurrentQuarter": include_current_quarter},
         )
 
     def get_stock_ownership_by_holders(self, symbol, date, page=None):
-        """Provides the stock ownership of individual holders, including institutional and individual investors.
+        """Provides the stock ownership of individual holders.
+
+         Including institutional and individual investors.
 
         Args:
             symbol (str): The stock symbol, e.g. "AAPL"
@@ -270,7 +311,9 @@ class InstitutionalStockOwnership:
         )
 
     def get_portfolio_holdings_summary(self, cik, page=None):
-        """Provides a summary of portfolio holdings, including the top holdings, sector allocation, and industry allocation.
+        """Provides a summary of portfolio holdings.
+
+         Including the top holdings, sector allocation, and industry allocation.
 
         Args:
             cik (str): CIK of the company
@@ -293,7 +336,9 @@ class InstitutionalStockOwnership:
         )
 
     def get_industry_ownership_summary(self, date, cik, page=None):
-        """Provides a summary of industry ownership, including the top industries and the average weight of each industry.
+        """Provides a summary of industry ownership.
+
+         Including the top industries and the average weight of each industry.
 
         Args:
             date (str): The date of the filing. Format: YYYY-MM-DD
@@ -380,7 +425,10 @@ class InstitutionalStockOwnership:
         )
 
     def get_portfolio_composition(self, cik, date, page=None):
-        """Provides the composition of portfolios, including the asset allocation, sector allocation, and industry allocation.
+        """Provides the composition of portfolios.
+
+         Including the asset allocation, sector allocation,
+         and industry allocation.
 
         Args:
             cik (str): CIK of the company
@@ -437,7 +485,9 @@ class InstitutionalStockOwnership:
         )
 
     def get_institutional_holder(self, symbol):
-        """Provides detailed information on individual institutional investment managers, including their holdings, contact information, and investment style.
+        """Provides detailed information on individual investment managers.
+
+         Including their holdings, contact information, and investment style.
 
         Args:
             symbol (str): The stock symbol, e.g. "AAPL"

@@ -1,3 +1,4 @@
+"""Company Info API endpoints."""
 COMPANY_PROFILE_ENDPOINT = "v3/profile/{symbol}"
 EXECUTIVE_COMPENSATION_ENDPOINT = "v4/governance/executive_compensation"
 COMPENSATION_BENCHMARK_ENDPOINT = "v4/executive-compensation-benchmark"
@@ -25,8 +26,38 @@ ALL_SHARES_FLOAT_ENDPOINT = "v4/shares_float"
 
 
 class CompanyInfo:
+    """
+    A class to access insider trading data.
+
+    Explanation:
+    This class provides methods to retrieve information about insider trades,
+     insider transaction types, insiders by company symbol,
+      insider trade statistics, CIK number mapping, fail to deliver data, and more.
+
+    Methods:
+    - insider_trades_rss: Get an RSS feed of insider trades.
+    - insider_trades_search:
+      Search for insider trades by company name, ticker symbol, or insider name.
+    - transaction_types: Get a list of insider transaction types.
+    - insiders_by_symbol: Get a list of insiders for a given company.
+    - insider_trade_statistics:
+      Get statistics on insider trading activity for a company.
+    - cik_mapper: Convert a CIK number to a company name.
+    - cik_mapper_by_symbol:
+      Get a list of CIK numbers and company names by symbol.
+    - fail_to_deliver: Get a list of fail to deliver data for a company.
+    """
 
     def __init__(self, api):
+        """
+        Initializes the CompanyInfo class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_company_profile(self, symbol: str) -> dict:
@@ -36,7 +67,7 @@ class CompanyInfo:
             market capitalization, description, headquarters, and more.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the profile for.
+            symbol: str - The stock symbol of the company.
 
         Returns:[
             {
@@ -57,7 +88,7 @@ class CompanyInfo:
                 "exchangeShortName": "NASDAQ",
                 "industry": "Consumer Electronics",
                 "website": "https://www.apple.com",
-                "description": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. It also sells various related services. In addition, the company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; AirPods Max, an over-ear wireless headphone; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, HomePod, and iPod touch. Further, it provides AppleCare support services; cloud services store services; and operates various platforms, including the App Store that allow customers to discover and download applications and digital content, such as books, music, video, games, and podcasts. Additionally, the company offers various services, such as Apple Arcade, a game subscription service; Apple Music, which offers users a curated listening experience with on-demand radio stations; Apple News+, a subscription news and magazine service; Apple TV+, which offers exclusive original content; Apple Card, a co-branded credit card; and Apple Pay, a cashless payment service, as well as licenses its intellectual property. The company serves consumers, and small and mid-sized businesses; and the education, enterprise, and government markets. It distributes third-party applications for its products through the App Store. The company also sells its products through its retail and online stores, and direct sales force; and third-party cellular network carriers, wholesalers, retailers, and resellers. Apple Inc. was incorporated in 1977 and is headquartered in Cupertino, California.",
+                "description": "Apple Inc. designs, manufactures, and markets...",
                 "ceo": "Mr. Timothy D. Cook",
                 "sector": "Technology",
                 "country": "US",
@@ -82,12 +113,13 @@ class CompanyInfo:
         return self.api.get(COMPANY_PROFILE_ENDPOINT.format(symbol=symbol))
 
     def get_executive_compensation(self, symbol: str) -> dict:
-        """Get the compensation of the company's executives with our Executive Compensation endpoint.
+        """Get the compensation of the company's executives.
 
-        This endpoint provides information on the compensation of a company's executives, including the CEO, CFO, and COO.
+        This endpoint provides information on the compensation of a
+         company's executives, including the CEO, CFO, and COO.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the executive compensation for.
+            symbol: str - The stock symbol of the company.
 
         Returns: [
             {
@@ -97,7 +129,7 @@ class CompanyInfo:
                 "industryTitle": "ELECTRONIC COMPUTERS",
                 "acceptedDate": "2022-01-06 16:30:34",
                 "filingDate": "2022-01-06",
-                "nameAndPosition": "Kate Adams Senior Vice President, General Counsel and Secretary",
+                "nameAndPosition": "Kate Adams Senior Vice President, ...",
                 "year": 2020,
                 "salary": 1000000,
                 "bonus": 0,
@@ -105,14 +137,18 @@ class CompanyInfo:
                 "incentive_plan_compensation": 3577000,
                 "all_other_compensation": 14310,
                 "total": 26248995,
-                "url": "https://www.sec.gov/Archives/edgar/data/320193/000119312522003583/0001193125-22-003583-index.htm"
+                "url": "https://www.sec.gov/Archives/edgar/data/320193/..."
             }
         ]
         """
         return self.api.get(EXECUTIVE_COMPENSATION_ENDPOINT.format(symbol=symbol))
 
     def get_compensation_benchmark(self, year: int):
-        """Compare a company's executive compensation to other companies in the same industry with our Compensation Benchmark endpoint. This endpoint can help you understand how competitive a company's executive compensation is.
+        """Compare a company's executive compensation to other companies.
+
+        In the same industry with our Compensation Benchmark endpoint.
+        This can help you understand how competitive a company's
+         executive compensation is.
 
         Args:
             year: int - The year you want to get the compensation benchmark for.
@@ -125,12 +161,15 @@ class CompanyInfo:
             }
         ]
         """
-        return self.api.get(COMPENSATION_BENCHMARK_ENDPOINT, dict(year=year))
+        return self.api.get(COMPENSATION_BENCHMARK_ENDPOINT, {"year": year})
 
     def get_company_notes(self, symbol: str) -> dict:
-        """Stay up-to-date on a company's financial condition, operations, and risks with our Company Notes endpoint.
+        """Stay up-to-date on a company's financial condition.
 
-        This endpoint provides information about notes reported by a company in their financial statements.
+        Including operations, and risks with our Company Notes endpoint.
+
+        This endpoint provides information about notes reported by a
+         company in their financial statements.
 
         Args:
             symbol: str - The stock symbol of the company you want to get the notes for.
@@ -144,15 +183,16 @@ class CompanyInfo:
             }
         ]
         """
-        return self.api.get(COMPANY_NOTES_ENDPOINT, dict(symbol=symbol))
+        return self.api.get(COMPANY_NOTES_ENDPOINT, {"symbol": symbol})
 
     def get_historical_employee_count(self, symbol: str) -> dict:
-        """Track how a company's workforce has grown or shrunk over time with our Historical Employees endpoint. This endpoint provides historical data about the number of employees in a company.
+        """Track how a company's workforce has grown or shrunk over time.
 
-        This endpoint provides information about the number of employees at a company over time.
+        This endpoint provides information about the number of
+         employees at a company over time.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the historical employee count for.
+            symbol: str - The stock symbol of the company.
 
         Returns: [
             {
@@ -164,17 +204,19 @@ class CompanyInfo:
                 "formType": "10-K",
                 "filingDate": "2022-10-28",
                 "employeeCount": 164000,
-                "source": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm"
+                "source": "https://www.sec.gov/Archives/edgar/data/320193/..."
             }
         ]
         """
-        return self.api.get(HISTORICAL_EMPLOYEE_ENDPOINT, dict(symbol=symbol))
+        return self.api.get(HISTORICAL_EMPLOYEE_ENDPOINT, {"symbol": symbol})
 
     def get_employee_count(self, symbol: str) -> dict:
-        """Get the number of employees at a company with our Employee Count endpoint. This endpoint provides information about the number of employees at a company.
+        """Get the number of employees at a company.
+
+        This endpoint provides information about the number of employees at a company.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the employee count for.
+            symbol: str - The stock symbol of the company.
 
         Returns: [
             {
@@ -186,11 +228,11 @@ class CompanyInfo:
                 "formType": "10-K",
                 "filingDate": "2022-10-28",
                 "employeeCount": 164000,
-                "source": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm"
+                "source": "https://www.sec.gov/Archives/edgar/data/320193/..."
             }
         ]
         """
-        return self.api.get(EMPLOYEE_COUNT_ENDPOINT, dict(symbol=symbol))
+        return self.api.get(EMPLOYEE_COUNT_ENDPOINT, {"symbol": symbol})
 
     def get_stock_screener(
         self,
@@ -212,19 +254,22 @@ class CompanyInfo:
         exchange=None,
         limit=None,
     ):
-        """Find stocks that meet your investment criteria with our Screener (Stock) endpoint. This endpoint allows you to search for stocks based on various criteria, such as market cap, price, volume, beta, sector, and country.
+        """Find stocks that meet your investment criteria.
+
+        This endpoint allows you to search for stocks based on various criteria,
+         such as market cap, price, volume, beta, sector, and country.
 
         Args:
-            market_cap_more_than: int - The minimum market capitalization of the stocks you want to find.
-            market_cap_lower_than: int - The maximum market capitalization of the stocks you want to find.
-            price_more_than: int - The minimum price of the stocks you want to find.
-            price_lower_than: int - The maximum price of the stocks you want to find.
-            beta_more_than: int - The minimum beta of the stocks you want to find.
-            beta_lower_than: int - The maximum beta of the stocks you want to find.
-            volume_more_than: int - The minimum volume of the stocks you want to find.
-            volume_lower_than: int - The maximum volume of the stocks you want to find.
-            dividend_more_than: int - The minimum dividend of the stocks you want to find.
-            dividend_lower_than: int - The maximum dividend of the stocks you want to find.
+            market_cap_more_than: int - The minimum market capitalization.
+            market_cap_lower_than: int - The maximum market capitalization.
+            price_more_than: int - The minimum price.
+            price_lower_than: int - The maximum price.
+            beta_more_than: int - The minimum beta.
+            beta_lower_than: int - The maximum beta.
+            volume_more_than: int - The minimum volume.
+            volume_lower_than: int - The maximum volume.
+            dividend_more_than: int - The minimum dividend.
+            dividend_lower_than: int - The maximum dividend.
             is_etf: bool - Whether the stocks you want to find are ETFs.
             is_fund: bool - Whether the stocks you want to find are funds.
             sector: str - The sector of the stocks you want to find.
@@ -253,30 +298,32 @@ class CompanyInfo:
             }
         ]
         """
-
-        params = dict(
-            marketCapMoreThan=market_cap_more_than,
-            marketCapLowerThan=market_cap_lower_than,
-            priceMoreThan=price_more_than,
-            priceLowerThan=price_lower_than,
-            betaMoreThan=beta_more_than,
-            betaLowerThan=beta_lower_than,
-            volumeMoreThan=volume_more_than,
-            volumeLowerThan=volume_lower_than,
-            dividendMoreThan=dividend_more_than,
-            dividendLowerThan=dividend_lower_than,
-            isEtf=is_etf,
-            isFund=is_fund,
-            sector=sector,
-            industry=industry,
-            country=country,
-            exchange=exchange,
-            limit=limit,
-        )
+        params = {
+            "marketCapMoreThan": market_cap_more_than,
+            "marketCapLowerThan": market_cap_lower_than,
+            "priceMoreThan": price_more_than,
+            "priceLowerThan": price_lower_than,
+            "betaMoreThan": beta_more_than,
+            "betaLowerThan": beta_lower_than,
+            "volumeMoreThan": volume_more_than,
+            "volumeLowerThan": volume_lower_than,
+            "dividendMoreThan": dividend_more_than,
+            "dividendLowerThan": dividend_lower_than,
+            "isEtf": is_etf,
+            "isFund": is_fund,
+            "sector": sector,
+            "industry": industry,
+            "country": country,
+            "exchange": exchange,
+            "limit": limit,
+        }
         return self.api.get(STOCK_SCREEN_ENDPOINT, params=params)
 
     def get_stock_grade(self, symbol: str, limit: int = 500) -> dict:
-        """Get the grade of a stock with our Stock Grade endpoint. This endpoint provides a grade for a stock based on various criteria, such as value, growth, profitability, and momentum.
+        """Get the grade of a stock with our Stock Grade endpoint.
+
+        This endpoint provides a grade for a stock based on various criteria,
+          such as value, growth, profitability, and momentum.
 
         Args:
             symbol: str - The stock symbol of the company you want to get the grade for.
@@ -292,13 +339,16 @@ class CompanyInfo:
             }
         ]
         """
-        return self.api.get(STOCK_GRADE_ENDPOINT.format(symbol), dict(limit=limit))
+        return self.api.get(STOCK_GRADE_ENDPOINT.format(symbol), {"limit": limit})
 
     def get_executives(self, symbol: str) -> dict:
-        """Get the executives of a company with our Company Executives endpoint. This endpoint provides information about the executives of a company, including their names, titles, and salaries.
+        """Get the executives of a company with our Company Executives endpoint.
+
+        This endpoint provides information about the executives of a company,
+         including their names, titles, and salaries.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the executives for.
+            symbol: str - The stock symbol of the company.
 
         Returns: [
             {
@@ -315,10 +365,12 @@ class CompanyInfo:
         return self.api.get(EXECUTIVES_ENDPOINT.format(symbol))
 
     def get_company_core_information(self, symbol: str) -> dict:
-        """Verify a company's identity or find additional information about a company with our Company Core Information summary endpoint. This endpoint provides core information such as CIK, exchange, and address.
+        """Verify a company's identity or find additional information about a company.
+
+        This endpoint provides core information such as CIK, exchange, and address.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the core information for.
+            symbol: str - The stock symbol of the company.
 
         Returns:[
             {
@@ -331,20 +383,22 @@ class CompanyInfo:
                 "stateLocation": "CA",
                 "stateOfIncorporation": "CA",
                 "fiscalYearEnd": "09-25",
-                "businessAddress": "ONE APPLE PARK WAY,CUPERTINO CA 95014,(408) 996-1010",
+                "businessAddress": "ONE APPLE PARK WAY,CUPERTINO CA 95014,...",
                 "mailingAddress": "ONE APPLE PARK WAY,CUPERTINO CA 95014",
                 "taxIdentificationNumber": "94-2404110",
                 "registrantName": "Apple Inc."
             }
         ]
         """
-        return self.api.get(COMPANY_CORE_INFORMATION_ENDPOINT, dict(symbol=symbol))
+        return self.api.get(COMPANY_CORE_INFORMATION_ENDPOINT, {"symbol": symbol})
 
     def get_market_capitalization(self, symbol: str) -> dict:
-        """Get the market capitalization of a company with our Market Capitalization endpoint. This endpoint provides information about the market capitalization of a company.
+        """Get the market capitalization of a company.
+
+        This endpoint provides information about the market capitalization of a company.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the market capitalization for.
+            symbol: str - The stock symbol you want to get.
 
         Returns: [
             {
@@ -359,13 +413,17 @@ class CompanyInfo:
     def get_historical_market_capitalization(
         self, symbol: str, from_date: str, to_date: str, limit: int = 500
     ) -> dict:
-        """The FMP Historical Market Cap endpoint offers comprehensive historical market capitalization data for companies, enabling users to analyze the company's growth trajectory and identify performance trends over time. Please note that each query is limited to a maximum of five years of data.
+        """Provides comprehensive historical market capitalization data for companies.
+
+         Enabling users to analyze the company's growth trajectory and
+         identify performance trends over time.
+         Please note that each query is limited to a maximum of five years of data.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the historical market capitalization for.
-            from_date: str - The start date of the historical market capitalization you want to get.
-            to_date: str - The end date of the historical market capitalization you want to get.
-            limit: int - The maximum number of historical market capitalizations you want to get.
+            symbol: str - The stock symbol of the company.
+            from_date: str - The start date you want to get.
+            to_date: str - The end date you want to get.
+            limit: int - The maximum number of results you want to get.
 
 
         Returns: [
@@ -382,7 +440,10 @@ class CompanyInfo:
         )
 
     def get_all_countries(self):
-        """The FMP All Countries endpoint provides a list of all countries where stocks are traded. Investors can use this information to identify new investment opportunities and to diversify their portfolios.
+        """Provides a list of all countries where stocks are traded.
+
+        Investors can use this information to identify new investment
+          opportunities and to diversify their portfolios.
 
         Returns: [
             "FK",
@@ -397,11 +458,14 @@ class CompanyInfo:
         return self.api.get(ALL_COUNTRIES_ENDPOINT)
 
     def get_analyst_estimates(self, symbol: str, period: str, limit: int = 30) -> dict:
-        """The FMP Analyst Estimates endpoint provides analyst estimates for a company's future earnings and revenue. Investors can use this information to get a sense of what analysts expect from a company and to identify potential investment opportunities.
+        """Provides analyst estimates for a company's future earnings and revenue.
+
+        Investors can use this information to get a sense of what analysts expect
+         from a company and to identify potential investment opportunities.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the analyst estimates for.
-            period: str - The period you want to get the analyst estimates for. (annual, quarter)
+            symbol: str - The stock symbol of the company.
+            period: str - The period you want to get. (annual, quarter)
             limit: int - The maximum number of analyst estimates you want to get.
 
         Returns: [
@@ -433,14 +497,18 @@ class CompanyInfo:
         """
         return self.api.get(
             ANALYST_ESTIMATES_ENDPOINT.format(symbol=symbol),
-            dict(period=period, limit=limit),
+            {"period": period, "limit": limit},
         )
 
     def get_analyst_recommendations(self, symbol: str, limit: int = 10) -> dict:
-        """The FMP Analyst Recommendation endpoint provides analyst recommendations for buying, selling, or holding a company's stock. Investors can use this information to get a sense of what analysts think of a company's stock and to make informed investment decisions.
+        """Provides recommendations for buying, selling, or holding a company's stock.
+
+        Investors can use this information to get a sense of what analysts
+         think of a company's stock and to make informed investment decisions.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the analyst recommendations for.
+            symbol: str - The stock symbol of the company.
+            limit: int - The maximum number of analyst recommendations you want to get.
 
         Returns: [
             {
@@ -454,13 +522,18 @@ class CompanyInfo:
             }
         ]
         """
-        return self.api.get(ANALYST_RECOMMENDATION_ENDPOINT.format(symbol=symbol))
+        return self.api.get(
+            ANALYST_RECOMMENDATION_ENDPOINT.format(symbol=symbol), {"limit": limit}
+        )
 
     def get_company_outlook(self, symbol: str) -> dict:
-        """Get the outlook of a company with our Company Outlook endpoint. This endpoint provides an outlook for a company based on various criteria, such as value, growth, profitability, and momentum.
+        """Get the outlook of a company with our Company Outlook endpoint.
+
+         This endpoint provides an outlook for a company based on various
+          criteria, such as value, growth, profitability, and momentum.
 
         Args:
-            symbol: str - The stock symbol of the company you want to get the outlook for.
+            symbol: str - The stock symbol of the company.
 
         Returns: {
             "profile": {
@@ -481,7 +554,7 @@ class CompanyInfo:
                 "exchangeShortName": "NASDAQ",
                 "industry": "Consumer Electronics",
                 "website": "https://www.apple.com",
-                "description": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. It also sells various related services. In addition, the company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; AirPods Max, an over-ear wireless headphone; and wearables, home, and accessories comprising AirPods, Apple TV, Apple Watch, Beats products, HomePod, and iPod touch. Further, it provides AppleCare support services; cloud services store services; and operates various platforms, including the App Store that allow customers to discover and download applications and digital content, such as books, music, video, games, and podcasts. Additionally, the company offers various services, such as Apple Arcade, a game subscription service; Apple Music, which offers users a curated listening experience with on-demand radio stations; Apple News+, a subscription news and magazine service; Apple TV+, which offers exclusive original content; Apple Card, a co-branded credit card; and Apple Pay, a cashless payment service, as well as licenses its intellectual property. The company serves consumers, and small and mid-sized businesses; and the education, enterprise, and government markets. It distributes third-party applications for its products through the App Store. The company also sells its products through its retail and online stores, and direct sales force; and third-party cellular network carriers, wholesalers, retailers, and resellers. Apple Inc. was incorporated in 1977 and is headquartered in Cupertino, California.",
+                "description": "Apple Inc. designs, manufactures, and markets ...",
                 "ceo": "Mr. Timothy D. Cook",
                 "sector": "Technology",
                 "country": "US",
@@ -584,7 +657,7 @@ class CompanyInfo:
                     "securitiesTransacted": 136268,
                     "price": 0,
                     "securityName": "Common Stock",
-                    "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000093/0000320193-23-000093-index.htm"
+                    "link": "https://www.sec.gov/Archives/edgar/data/320193/..."
                 }
             ],
             "keyExecutives": [
@@ -621,11 +694,11 @@ class CompanyInfo:
                 {
                     "symbol": "AAPL",
                     "publishedDate": "2023-10-04 15:15:36",
-                    "title": "Apple CEO Tim Cook Sells Shares Valued at About $88 Million",
-                    "image": "https://cdn.snapi.dev/images/v1/p/w/gettyimages-1660560144-b12dac563e6048fe88184489645bf0d3-2090214.jpg",
+                    "title": "Apple CEO Tim Cook Sells Shares Valued at About $88M",
+                    "image": "https://cdn.snapi.dev/images/v1/p/w/gettyimages-...",
                     "site": "Investopedia",
-                    "text": "Apple (AAPL) CEO Tim Cook made his biggest sale of company stock in more than two years as shares of the iPhone maker have lost ground since hitting an all-time high this summer.",
-                    "url": "https://www.investopedia.com/apple-ceo-tim-cook-sells-shares-valued-at-about-usd88-million-8347443"
+                    "text": "Apple (AAPL) CEO Tim Cook made his biggest sale of ...",
+                    "url": "https://www.investopedia.com/apple-ceo-tim-cook-sells-..."
                 }
             ],
             "rating": [
@@ -688,8 +761,8 @@ class CompanyInfo:
                         "epsdiluted": 6.11,
                         "weightedAverageShsOut": 16215963000,
                         "weightedAverageShsOutDil": 16325819000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
                     },
                     {
                         "date": "2021-09-25",
@@ -728,8 +801,8 @@ class CompanyInfo:
                         "epsdiluted": 5.61,
                         "weightedAverageShsOut": 16701272000,
                         "weightedAverageShsOutDil": 16864919000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/0000320193-21-000105-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019321000105/aapl-20210925.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
                     },
                     {
                         "date": "2020-09-26",
@@ -768,8 +841,8 @@ class CompanyInfo:
                         "epsdiluted": 3.28,
                         "weightedAverageShsOut": 17352119000,
                         "weightedAverageShsOutDil": 17528214000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019320000096/0000320193-20-000096-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019320000096/aapl-20200926.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...m",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193..."
                     },
                     {
                         "date": "2019-09-28",
@@ -808,8 +881,8 @@ class CompanyInfo:
                         "epsdiluted": 2.97,
                         "weightedAverageShsOut": 18471336000,
                         "weightedAverageShsOutDil": 18595652000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019319000119/0000320193-19-000119-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019319000119/a10-k20199282019.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
                     },
                     {
                         "date": "2018-09-29",
@@ -848,8 +921,8 @@ class CompanyInfo:
                         "epsdiluted": 2.98,
                         "weightedAverageShsOut": 19821508000,
                         "weightedAverageShsOutDil": 20000436000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019318000145/0000320193-18-000145-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019318000145/a10-k20189292018.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
                     }
                 ]
             },
@@ -892,8 +965,8 @@ class CompanyInfo:
                         "epsdiluted": 1.26,
                         "weightedAverageShsOut": 15697614000,
                         "weightedAverageShsOutDil": 15775021000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000077/0000320193-23-000077-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000077/aapl-20230701.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
                     },
                     {
                         "date": "2023-04-01",
@@ -932,8 +1005,8 @@ class CompanyInfo:
                         "epsdiluted": 1.52,
                         "weightedAverageShsOut": 15787154000,
                         "weightedAverageShsOutDil": 15847050000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000064/0000320193-23-000064-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000064/aapl-20230401.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
                     },
                     {
                         "date": "2022-12-31",
@@ -972,8 +1045,8 @@ class CompanyInfo:
                         "epsdiluted": 1.88,
                         "weightedAverageShsOut": 15892723000,
                         "weightedAverageShsOutDil": 15955718000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000006/0000320193-23-000006-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019323000006/aapl-20221231.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
                     },
                     {
                         "date": "2022-09-24",
@@ -1012,8 +1085,8 @@ class CompanyInfo:
                         "epsdiluted": 1.29,
                         "weightedAverageShsOut": 16030382000,
                         "weightedAverageShsOutDil": 16118465000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
                     },
                     {
                         "date": "2022-06-25",
@@ -1052,18 +1125,24 @@ class CompanyInfo:
                         "epsdiluted": 1.2,
                         "weightedAverageShsOut": 16162945000,
                         "weightedAverageShsOutDil": 16262203000,
-                        "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000070/0000320193-22-000070-index.htm",
-                        "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000070/aapl-20220625.htm"
+                        "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                        "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
                     }
                 ]
             }
         }
 
         """
-        return self.api.get(COMPANY_OUTLOOK_ENDPOINT, dict(symbol=symbol))
+        return self.api.get(COMPANY_OUTLOOK_ENDPOINT, {"symbol": symbol})
 
     def get_stock_peers(self, symbol):
-        """The FMP Stock Peers endpoint provides a group of companies that trade on the same exchange, are in the same sector, and have a similar market capitalization. Investors can use this information to compare a company to its competitors and to identify companies that are performing well.
+        """Provides a group of companies that are similar.
+
+        Traded on the same exchange, are in the same sector,
+         and have a similar market capitalization.
+
+        Investors can use this information to compare a company to its
+         competitors and to identify companies that are performing well.
 
 
         Args:
@@ -1092,10 +1171,13 @@ class CompanyInfo:
         ]
 
         """
-        return self.api.get(STOCK_PEERS_ENDPOINT, dict(symbol=symbol))
+        return self.api.get(STOCK_PEERS_ENDPOINT, {"symbol": symbol})
 
     def get_mark_open(self):
-        """The FMP Market Open endpoint provides information on whether the US market and EURONEXT, etc are open or closed. Investors can use this information to make informed investment decisions and to avoid trading during market closures.
+        """Provides information on whether the markets are open or closed.
+
+        Investors can use this information to make informed investment
+         decisions and to avoid trading during market closures.
 
         Returns: {
             "stockExchangeName": "New York Stock Exchange",
@@ -1110,7 +1192,10 @@ class CompanyInfo:
         return self.api.get(MARKET_OPEN_ENDPOINT)
 
     def get_delisted_companies(self, page: int = 0):
-        """The FMP Delisted Companies endpoint provides a list of companies that have been delisted from the stock exchange. Investors can use this information to identify companies that have been delisted and to understand the reasons for their delisting.
+        """Provides a list of companies that have been delisted from the stock exchange.
+
+        Investors can use this information to identify companies that have
+         been delisted and to understand the reasons for their delisting.
 
         Args:
             page (int, optional): The page number of the results. Defaults to 0.
@@ -1125,10 +1210,14 @@ class CompanyInfo:
             }
         ]
         """
-        return self.api.get(DELISTED_COMPANIES_ENDPOINT, dict(page=page))
+        return self.api.get(DELISTED_COMPANIES_ENDPOINT, {"page": page})
 
     def get_company_share_float(self, symbol):
-        """The FMP Company Share Float endpoint provides the total number of shares that are publicly traded for a given company. This is also known as the company's float. The float is calculated by subtracting the number of restricted shares from the total number of outstanding shares.
+        """Provides the total number of shares traded for a given company.
+
+        This is also known as the company's float.
+        The float is calculated by subtracting the number of restricted
+         shares from the total number of outstanding shares.
 
         Args:
             symbol (str): Stock symbol
@@ -1139,15 +1228,19 @@ class CompanyInfo:
                 "freeFloat": 99.89311242764762,
                 "floatShares": 15891096314,
                 "outstandingShares": 15908100096,
-                "source": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000070/aapl-20220625.htm",
+                "source": "https://www.sec.gov/Archives/edgar/data/320193/...",
                 "date": "2022-11-01"
             }
         ]
         """
-        return self.api.get(COMPANY_SHARE_FLOAT_ENDPOINT, dict(symbol=symbol))
+        return self.api.get(COMPANY_SHARE_FLOAT_ENDPOINT, {"symbol": symbol})
 
     def get_historical_share_float(self, symbol):
-        """The FMP Historical Share Float endpoint provides historical data on the number of shares that are publicly traded for a given company. This is also known as the company's float. The float is calculated by subtracting the number of restricted shares from the total number of outstanding shares.
+        """Provides historical data on the number of shares traded for a given company.
+
+        This is also known as the company's float. The float is calculated by
+         subtracting the number of restricted shares from the total
+         number of outstanding shares.
 
         Args:
             symbol (str): Stock symbol
@@ -1163,10 +1256,12 @@ class CompanyInfo:
             }
         ]
         """
-        return self.api.get(HISTORICAL_SHARE_FLOAT_ENDPOINT, dict(symbol=symbol))
+        return self.api.get(HISTORICAL_SHARE_FLOAT_ENDPOINT, {"symbol": symbol})
 
     def get_all_shares_float(self):
-        """The number of shares available for trading, this includes Restricted Stock Units (RSUs)
+        """The number of shares available for trading.
+
+        This includes Restricted Stock Units (RSUs)
 
         Returns: [
             {
@@ -1174,7 +1269,7 @@ class CompanyInfo:
                 "freeFloat": 99.89311242764762,
                 "floatShares": 15891096314,
                 "outstandingShares": 15908100096,
-                "source": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000070/aapl-20220625.htm",
+                "source": "https://www.sec.gov/Archives/edgar/data/320193/...",
                 "date": "2022-11-01"
             }
         ]

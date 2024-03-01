@@ -1,0 +1,86 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "financial-modeling-prep"
+version = "0.1.0"
+authors = [
+  { name="Bill Schumacher", email="34168009+BillSchumacher@users.noreply.github.com" },
+]
+description = "Python wrapper for financialmodelingprep.com API"
+readme = "README.md"
+license='MIT'
+requires-python = ">3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Internet :: WWW/HTTP",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "requests-cache",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/BillSchumacher/financial-modeling-prep"
+"Bug Tracker" = "https://github.com/BillSchumacher/financial-modeling-prep/issues"
+
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+include = '\.pyi?$'
+extend-exclude = ""
+
+[tool.isort]
+profile = "black"
+
+[tool.pylint.messages_control]
+disable = "C0330, C0326"
+
+[tool.pylint.format]
+max-line-length = "88"
+
+[tool.hatch.build]
+include = [
+  "financial_modeling_prep/**/*.py",
+]
+exclude = []
+
+
+[tool.coverage.run]
+branch = true
+source = ["financial_modeling_prep", ]
+
+[tool.coverage.report]
+# Regexes for lines to exclude from consideration
+omit = []
+
+exclude_lines = [
+    # Don't complain about missing debug-only code:
+    "def __repr__",
+    "if self\\.debug",
+
+    # Don't complain if tests don't hit defensive assertion code:
+    "raise AssertionError",
+    "raise NotImplementedError",
+
+    # Don't complain if non-runnable code isn't run:
+    "if 0:",
+    "if __name__ == .__main__.:",
+
+    # Don't complain about abstract methods, they aren't run:
+    "@(abc\\.)?abstractmethod",
+    ]
+
+ignore_errors = true
+
+[tool.coverage.html]
+directory = "coverage_html_report"

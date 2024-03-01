@@ -1,5 +1,8 @@
-"""The financial statements, including balance sheet, income statement,
-and cash flow statement available in annual and quarterly format sourced from SEC filings
+"""The financial statements.
+
+Including balance sheet, income statement,
+and cash flow statement available in annual and
+quarterly format sourced from SEC filings
 """
 
 INCOME_STATEMENT_ENDPOINT_SYMBOL = "v3/income-statement/{symbol}"
@@ -22,7 +25,77 @@ ANNUAL_REPORTS_ON_FORM_10_K_ENDPOINT_XLSX = "v4/financial-reports-json"
 
 
 class FinancialStatements:
+    """The financial statements.
+
+    Including balance sheet, income statement
+    and cash flow statement available in annual and quarterly format
+    sourced from SEC filings.
+
+    Methods:
+    - get_income_statement_by_symbol(
+        symbol: str, period: str = "annual,quarter",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_income_statement_by_cik(
+        cik: str, period: str = "annual,quarter",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_balance_sheet_statement_by_symbol(
+        symbol: str, period: str = "annual,quarter",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_balance_sheet_statement_by_cik(
+        cik: str, period: str = "annual,quarter",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_cashflow_statement_by_symbol(
+        symbol: str, period: str = "annual,quarter",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_cashflow_statement_by_cik(
+        cik: str, period: str = "annual,quarter",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_income_statement_as_reported(
+        symbol: str, period: str = "annual",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_balance_sheet_statement_as_reported(
+        symbol: str, period: str = "annual",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_cashflow_statement_as_reported(
+        symbol: str, period: str = "annual",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_full_financial_statements_as_reported(
+        symbol: str, period: str = "annual",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_list_of_dates_and_links(
+        symbol: str, period: str = "annual",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_annual_reports_on_form_10_k(
+        symbol: str, period: str = "annual",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    - get_annual_reports_on_form_10_k_xlsx(
+        symbol: str, period: str = "annual",
+        datatype: str = "json", limit: int = 100
+    ) -> dict
+    """
+
     def __init__(self, api):
+        """
+        Initializes the FinancialStatements class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_income_statement_by_symbol(
@@ -32,13 +105,16 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
-        """Get the income statement for a company by its symbol. This endpoint can be used to assess a company's profitability and to identify potential risks.
+        """Get the income statement for a company by its symbol.
+
+        This endpoint can be used to assess a company's
+        profitability and to identify potential risks.
 
         Args:
             symbol (str): Stock symbol
             period (str, optional): Period. Defaults to 'annual,quarter'.
             datatype (str, optional): Datatype. Defaults to 'json'.
-            limit (int, optional):
+            limit (int, optional): Limit. Defaults to 100.
 
         Returns: [
             {
@@ -78,8 +154,8 @@ class FinancialStatements:
                 "epsdiluted": 6.11,
                 "weightedAverageShsOut": 16215963000,
                 "weightedAverageShsOutDil": 16325819000,
-                "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
-                "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+                "link": "https://www.sec.gov/Archives/edgar/data/320193...",
+                "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
             }
         ]
         """
@@ -95,13 +171,16 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
-        """Get the income statement for a company by its CIK. This endpoint can be used to assess a company's profitability and to identify potential risks.
+        """Get the income statement for a company by its CIK.
+
+        This endpoint can be used to assess a company's
+         profitability and to identify potential risks.
 
         Args:
             cik (str): CIK
             period (str, optional): Period. Defaults to 'annual,quarter'.
             datatype (str, optional): Datatype. Defaults to 'json'.
-            limit (int, optional):
+            limit (int, optional): Limit. Defaults to 100.
 
         Returns: [
             {
@@ -141,8 +220,8 @@ class FinancialStatements:
                 "epsdiluted": 6.11,
                 "weightedAverageShsOut": 16215963000,
                 "weightedAverageShsOutDil": 16325819000,
-                "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
-                "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+                "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
             }
         ]
         """
@@ -158,13 +237,16 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
-        """Get the balance sheet for a company by its symbol. This endpoint can be used to assess a company's financial health and to identify potential risks.
+        """Get the balance sheet for a company by its symbol.
+
+        This endpoint can be used to assess a company's financial
+         health and to identify potential risks.
 
         Args:
             symbol (str): Stock symbol
             period (str, optional): Period. Defaults to 'annual,quarter'.
             datatype (str, optional): Datatype. Defaults to 'json'.
-            limit (int, optional):
+            limit (int, optional): Limit. Defaults to 100.
 
         Returns: [
             {
@@ -220,8 +302,8 @@ class FinancialStatements:
                 "totalInvestments": 145463000000,
                 "totalDebt": 120069000000,
                 "netDebt": 96423000000,
-                "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
-                "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+                "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
             }
         ]
         """
@@ -237,13 +319,16 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
-        """Get the balance sheet for a company by its symbol. This endpoint can be used to assess a company's financial health and to identify potential risks.
+        """Get the balance sheet for a company by its symbol.
+
+         This endpoint can be used to assess a company's financial
+          health and to identify potential risks.
 
         Args:
-            symbol (str): Stock symbol
+            cik (str): cik
             period (str, optional): Period. Defaults to 'annual,quarter'.
             datatype (str, optional): Datatype. Defaults to 'json'.
-            limit (int, optional):
+            limit (int, optional): Limit. Defaults to 100.
 
         Returns: [
             {
@@ -299,8 +384,8 @@ class FinancialStatements:
                 "totalInvestments": 145463000000,
                 "totalDebt": 120069000000,
                 "netDebt": 96423000000,
-                "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
-                "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+                "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
             }
         ]
         """
@@ -316,10 +401,13 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
-        """Get the cash flow statement for a company by its CIK. This endpoint can be used to assess a company's cash flow generating ability and to identify potential risks.
+        """Get the cash flow statement for a company by its CIK.
+
+         This endpoint can be used to assess a company's cash flow
+          generating ability and to identify potential risks.
 
         Args:
-            cik (str): CIK
+            symbol (str): symbol
             period (str, optional): Period. Defaults to 'annual,quarter'.
             datatype (str, optional): Datatype. Defaults to 'json'.
             limit (int, optional): Limit. Defaults to 100.
@@ -364,8 +452,8 @@ class FinancialStatements:
                 "operatingCashFlow": 122151000000,
                 "capitalExpenditure": -10708000000,
                 "freeCashFlow": 111443000000,
-                "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
-                "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+                "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
             }
         ]
         """
@@ -381,7 +469,10 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
-        """Get the cash flow statement for a company by its CIK. This endpoint can be used to assess a company's cash flow generating ability and to identify potential risks.
+        """Get the cash flow statement for a company by its CIK.
+
+         This endpoint can be used to assess a company's cash flow
+          generating ability and to identify potential risks.
 
         Args:
             cik (str): CIK
@@ -429,8 +520,8 @@ class FinancialStatements:
                 "operatingCashFlow": 122151000000,
                 "capitalExpenditure": -10708000000,
                 "freeCashFlow": 111443000000,
-                "link": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/0000320193-22-000108-index.htm",
-                "finalLink": "https://www.sec.gov/Archives/edgar/data/320193/000032019322000108/aapl-20220924.htm"
+                "link": "https://www.sec.gov/Archives/edgar/data/320193/...",
+                "finalLink": "https://www.sec.gov/Archives/edgar/data/..."
             }
         ]
         """
@@ -446,7 +537,12 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
-        """Get the income statement for a company as reported by the company, without any adjustments. This endpoint can be used to assess a company's profitability and to identify potential risks.
+        # pylint: disable=line-too-long
+        """Get the income statement for a company as reported by the company.
+
+         Without any adjustments.
+         This endpoint can be used to assess a company's profitability
+          and to identify potential risks.
 
         Args:
             symbol (str): Stock symbol
@@ -485,7 +581,7 @@ class FinancialStatements:
                 "comprehensiveincomenetoftax": 88531000000
             }
         ]
-        """
+        """  # noqa: E501
         return self.api.get(
             INCOME_STATEMENT_AS_REPORTED_ENDPOINT.format(symbol=symbol),
             params={"period": period, "datatype": datatype, "limit": limit},
@@ -498,7 +594,11 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
-        """Get the balance sheet for a company as reported by the company, without any adjustments. This endpoint can be used to assess a company's financial health and to identify potential risks.
+        """Get the balance sheet for a company as reported by the company.
+
+         Without any adjustments.
+         This endpoint can be used to assess a company's financial
+          health and to identify potential risks.
 
         Args:
             symbol (str): Stock symbol
@@ -557,6 +657,7 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
+        # pylint: disable=line-too-long
         """Get the cash flow statement for a company as reported by the company, without any adjustments. This endpoint can be used to assess a company's cash flow generating ability and to identify potential risks.
 
         Args:
@@ -604,7 +705,7 @@ class FinancialStatements:
                 "interestpaidnet": 2865000000
             }
         ]
-        """
+        """  # noqa: E501
         return self.api.get(
             CASHFLOW_STATEMENT_AS_REPORTED_ENDPOINT.format(symbol=symbol),
             params={"period": period, "datatype": datatype, "limit": limit},
@@ -617,7 +718,8 @@ class FinancialStatements:
         datatype: str = "json",
         limit: int = 100,
     ) -> dict:
-        """FMP's Full Financial Statement As Reported API provides access to all three of the financial statements (income statement, balance sheet, and cash flow statement) for a company as reported by the company. This data can be used to get a complete overview of a company's financial performance and health.
+        # pylint: disable=line-too-long
+        """Full Financial Statement As Reported API provides access to all three of the financial statements (income statement, balance sheet, and cash flow statement) for a company as reported by the company. This data can be used to get a complete overview of a company's financial performance and health.
 
         Args:
             symbol (str): Stock symbol
@@ -956,14 +1058,19 @@ class FinancialStatements:
                 "noncurrentassets": 31119000000
             }
         ]
-        """
+        """  # noqa: E501
         return self.api.get(
             FULL_FINANCIAL_STATEMENTS_AS_REPORTED_ENDPOINT.format(symbol=symbol),
             params={"period": period, "datatype": datatype, "limit": limit},
         )
 
     def get_list_of_dates_and_links(self, symbol: str) -> dict:
-        """FMP's List Of Dates API provides a list of all the dates for which financial statements are available for a company. This information can be used to identify the dates for which financial statements are available and to track a company's financial performance over time.
+        # pylint: disable=line-too-long
+        """Provides a list of all the dates for financial statements.
+
+         This information can be used to identify the dates for which
+          financial statements are available and to track a
+           company's financial performance over time.
 
         Args:
             symbol (str): Stock symbol
@@ -977,13 +1084,13 @@ class FinancialStatements:
                 "linkJson": "https://fmpcloud.io/api/v4/financial-reports-json?symbol=AAPL&year=2022&period=FY&apikey=YOUR_API_KEY"
             }
         ]
-        """
+        """  # noqa: E501
         return self.api.get(LIST_OF_DATES_AND_LINKS_ENDPOINT, params={"symbol": symbol})
 
     def get_annual_reports_on_form_10_k(
         self, symbol: str, year: int, period: str = "FY"
     ) -> dict:
-        """Annual Reports on Form 10-K in JSON format
+        """Annual Reports on Form 10-K in JSON format.
 
         Args:
             symbol (str): Stock symbol
@@ -1088,7 +1195,7 @@ class FinancialStatements:
     def get_annual_reports_on_form_10_k_xlsx(
         self, symbol: str, year: int, period: str = "FY"
     ) -> dict:
-        """Annual Reports on Form 10-K in XLSX format
+        """Annual Reports on Form 10-K in XLSX format.
 
         Args:
             symbol (str): Stock symbol

@@ -1,24 +1,56 @@
+"""Upgrades and Downgrades API endpoints."""
 UPGRADES_AND_DOWNGRADES_RSS_FEED_ENDPOINT = "v4/upgrades-downgrades-rss-feed"
 UPGRADES_AND_DOWNGRADES_CONSENSUS_ENDPOINT = "v4/upgrades-downgrades-consensus"
 UPGRADES_AND_DOWNGRADES_BY_COMPANY_ENDPOINT = "v4/upgrades-downgrades-grading-company"
 
 
 class UpgradesAndDowngrades:
+    """
+    A class to access stock upgrades and downgrades information.
+
+    Explanation:
+    This class provides methods to retrieve RSS feeds of stock upgrades and
+     downgrades from different analysts, consensus ratings for companies, and
+     a comprehensive list of upgrades and downgrades for a specific company.
+
+    Methods:
+    - get_rss_feed:
+    Get an RSS feed of all stock upgrades and downgrades from different analysts.
+    - get_consensus:
+    Get the consensus rating for a company, which is the average rating of analysts.
+    - get_by_company:
+    Get a list of all stock upgrades and downgrades for a specific company.
+    """
+
     def __init__(self, api):
+        """
+        Initializes the UpgradesAndDowngrades class with the provided API object.
+
+        Args:
+            api: The API object for interacting with the API.
+
+        Returns:
+            None
+        """
         self.api = api
 
     def get_rss_feed(self, page: int = 0) -> dict:
-        """Get an RSS feed of all stock upgrades and downgrades from different analysts. This RSS feed is updated on a daily basis, so you can always stay up-to-date on the latest analyst ratings without having to manually check for updates.
+        """Get an RSS feed of all stock upgrades and downgrades from different analysts.
+
+        This RSS feed is updated on a daily basis, so you can always stay
+         up-to-date on the latest analyst ratings without having to
+         manually check for updates.
 
         Args:
-            page (int, optional): The page number to retrieve. Each page contains 100 items. Defaults to 0.
+            page (int, optional): The page number to retrieve.
+             Each page contains 100 items. Defaults to 0.
 
         Returns: [
             {
                 "symbol": "DAL",
                 "publishedDate": "2023-10-04T15:24:00.000Z",
-                "newsURL": "https://www.benzinga.com/analyst-ratings/analyst-color/23/10/35094507/delta-air-lines-3q23-earnings-in-focus-bofa-securities-expects-no-surprises-and-hig",
-                "newsTitle": "Delta Air Lines 3Q23 Earnings In Focus: BofA Securities Expects No Surprises And Highlights Cost Pressure",
+                "newsURL": "https://www.benzinga.com/analyst-ratings/analyst-color/...",
+                "newsTitle": "Delta Air Lines 3Q23 Earnings In Focus: BofA ...",
                 "newsBaseURL": "benzinga.com",
                 "newsPublisher": "Benzinga",
                 "newGrade": "Buy",
@@ -32,7 +64,10 @@ class UpgradesAndDowngrades:
         return self.api.get(UPGRADES_AND_DOWNGRADES_RSS_FEED_ENDPOINT, {"page": page})
 
     def get_consensus(self, symbol: str) -> dict:
-        """Get the consensus rating for a company, which is the average rating from different analysts. This information can be used to get a general idea of what analysts think about a company's stock and to make more informed investment decisions.
+        """Get the consensus rating for a company, the average rating from analysts.
+
+        This information can be used to get a general idea of what analysts
+         think about a company's stock and to make more informed investment decisions.
 
         Args:
             symbol (str): The ticker symbol of the company.
@@ -54,7 +89,13 @@ class UpgradesAndDowngrades:
         )
 
     def get_by_company(self, company: str) -> dict:
-        """Get a comprehensive list of all stock upgrades and downgrades for a specific company, including the rating change, the analyst firm, and the date of the rating change. This information can be used to track analyst sentiment for a company and to identify potential investment opportunities or risks.
+        """Get a list of all stock upgrades and downgrades for a specific company.
+
+        Including the rating change, the analyst firm, and the date
+         of the rating change.
+
+        This information can be used to track analyst sentiment for
+         a company and to identify potential investment opportunities or risks.
 
         Args:
             company (str): The name of the company.
@@ -63,8 +104,8 @@ class UpgradesAndDowngrades:
             {
                 "symbol": "ATUS",
                 "publishedDate": "2022-02-18T08:14:00.000Z",
-                "newsURL": "https://www.benzinga.com/news/22/02/25712046/barclays-maintains-equal-weight-on-altice-usa-lowers-price-target-to-17",
-                "newsTitle": "Barclays Maintains Equal-Weight on Altice USA, Lowers Price Target to $17",
+                "newsURL": "https://www.benzinga.com/news/22/02/25712046/...",
+                "newsTitle": "Barclays Maintains Equal-Weight on Altice...",
                 "newsBaseURL": "benzinga.com",
                 "newsPublisher": "Benzinga",
                 "newGrade": "Equal-Weight",
