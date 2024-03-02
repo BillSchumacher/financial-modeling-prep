@@ -1,5 +1,5 @@
-financial-modeling-prep
-========================
+financial-modeling-prep-api
+===========================
 
 This is a Python package for financialmodelingprep.com API.
 
@@ -18,7 +18,7 @@ They might not work or have errors however, this is a work in progress, see Know
 You can install the package using pip:
 
 ```bash
-pip install financial-modeling-prep
+pip install financial-modeling-prep-api
 ```
 
 ## Usage

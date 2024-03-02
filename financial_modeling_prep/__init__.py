@@ -116,7 +116,12 @@ class FinancialModelingPrep:
             params (dict, optional): Additional parameters for the API request.
 
         Returns:
-            requests.Response: The response object from the API request.
+            dict: The json response.
+            Invalid API Key: {
+                'Error Message':
+                'Invalid API KEY. Please retry or visit our documentation to
+                create one FREE https://financialmodelingprep.com/developer/docs'
+            }
         """
         if params is None:
             params = {}
