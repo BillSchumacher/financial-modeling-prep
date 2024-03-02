@@ -1,6 +1,6 @@
 """Dividends module."""
 DIVIDENDS_CALENDAR_ENDPOINT = "v3/stock_dividend_calendar"
-DIVIDENDS_HISTORICAL_ENDPOINT = "v3/historical_price_full/stock_dividend/{symbol}"
+DIVIDENDS_HISTORICAL_ENDPOINT = "v3/historical-price-full/stock_dividend/{symbol}"
 
 
 class Dividends:
