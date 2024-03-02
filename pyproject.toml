@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "financial-modeling-prep-api"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name="Bill Schumacher", email="34168009+BillSchumacher@users.noreply.github.com" },
 ]
@@ -26,6 +26,7 @@ classifiers = [
 ]
 dependencies = [
   "requests-cache",
+  "websocket-client",
 ]
 
 [project.urls]
